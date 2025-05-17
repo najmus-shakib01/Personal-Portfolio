@@ -87,7 +87,7 @@ const Footer = () => {
     },
     {
       icon: <FaGithub />,
-      url: "https://github.com/Shakibosd",
+      url: "https://github.com/najmus-shakib01",
       color: "hover:text-gray-400",
     },
     {

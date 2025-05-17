@@ -11,9 +11,9 @@ const Project = () => {
             title: "Flower Seal",
             description: "An e-commerce platform for flower sales management with full-stack functionality.",
             tags: ["React", "Django Rest Framework", "Tailwind", "E-Com."],
-            demoLink: "https://flower-sell.netlify.app/",
-            frontend: "https://github.com/Shakibosd/drf_final_exam_FrontEnd_Part_ReactJs",
-            backend: "https://github.com/Shakibosd/DRF-Final-Exam-BackEnd",
+            demoLink: "https://flower-sell.vercel.app/",
+            frontend: "https://github.com/najmus-shakib01/Flower-Sell-Frontend",
+            backend: "https://github.com/najmus-shakib01/Flower-Sell-Backend",
         },
         {
             image: projectImg2,
