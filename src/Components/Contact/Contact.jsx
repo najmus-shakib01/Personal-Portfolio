@@ -1,7 +1,8 @@
-import { FaEnvelope, FaPhoneAlt, FaPaperPlane, FaUndo } from "react-icons/fa";
-import { MdLocationOn } from "react-icons/md";
-import { useState } from "react";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { toast } from "react-hot-toast";
+import { FaEnvelope, FaPaperPlane, FaPhoneAlt, FaUndo } from "react-icons/fa";
+import { MdLocationOn } from "react-icons/md";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -16,33 +17,37 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (!formData.name || !formData.email || !formData.message) {
+      toast.error("Please fill all fields");
+      return;
+    }
+
     setLoading(true);
     try {
       const res = await fetch(
-        `https://flower-seal-backend.vercel.app/api/v1/flower/contact/`,
+        `https://flower-sell-backend.vercel.app/api/v1/flower/contact/`,
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { 
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+          },
           body: JSON.stringify(formData),
         }
       );
 
-      const contentType = res.headers.get("content-type");
-      if (!contentType || !contentType.includes("application/json")) {
-        throw new Error("Server did not return JSON. Possible error page.");
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Failed to send message");
       }
 
-      const data = res.ok ? await res.json() : null;
-
-      if (res.ok) {
-        alert("Your Message Has Been Sent Successfully!");
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        alert("Failed To Send Your Message: " + JSON.stringify(data));
-      }
+      toast.success("Message sent successfully!");
+      setFormData({ name: "", email: "", message: "" });
     } catch (err) {
       console.error("Error:", err);
-      alert("An error occurred while sending your message.");
+      toast.error(err.message || "Failed to send message");
     } finally {
       setLoading(false);
     }
@@ -54,7 +59,6 @@ const Contact = () => {
       className="w-full bg-gradient-to-b from-gray-800 to-gray-900 py-20 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -73,7 +77,6 @@ const Contact = () => {
         </motion.div>
 
         <div className="flex items-center flex-col lg:flex-row gap-12">
-          {/* Contact Information */}
           <motion.div
             className="w-full lg:w-1/2 space-y-8"
             initial={{ opacity: 0, x: -20 }}
@@ -129,7 +132,6 @@ const Contact = () => {
             </div>
           </motion.div>
 
-          {/* Contact Form */}
           <motion.div
             className="w-full lg:w-1/2"
             initial={{ opacity: 0, x: 20 }}
