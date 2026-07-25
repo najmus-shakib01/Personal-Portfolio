@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Syed Najmus Shakib - Resume</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family:
+          "Inter",
+          system-ui,
+          -apple-system,
+          sans-serif;
+        color: #1e293b;
+        background: #f8fafc;
+        line-height: 1.5;
+        font-size: 13.5px;
+        padding: 20px;
+      }
+
+      .resume-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: #ffffff;
+        padding: 36px 44px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      }
+
+      /* Header */
+      header {
+        border-bottom: 2px solid #2563eb;
+        padding-bottom: 14px;
+        margin-bottom: 18px;
+      }
+
+      header h1 {
+        font-size: 24px;
+        font-weight: 800;
+        color: #0f172a;
+        letter-spacing: -0.02em;
+        margin-bottom: 4px;
+      }
+
+      .subtitle {
+        font-size: 13px;
+        font-weight: 600;
+        color: #2563eb;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 8px;
+      }
+
+      .contact-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 18px;
+        font-size: 12px;
+        color: #475569;
+      }
+
+      .contact-info a {
+        color: #2563eb;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .contact-info a:hover {
+        text-decoration: underline;
+      }
+
+      /* Sections */
+      section {
+        margin-bottom: 16px;
+      }
+
+      .section-title {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: #0f172a;
+        border-bottom: 1px solid #cbd5e1;
+        padding-bottom: 4px;
+        margin-bottom: 10px;
+      }
+
+      /* Summary */
+      .summary p {
+        color: #334155;
+        font-size: 12.5px;
+        line-height: 1.6;
+      }
+
+      /* Skills Grid */
+      .skills-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .skill-group {
+        display: flex;
+        font-size: 12.5px;
+      }
+
+      .skill-label {
+        width: 140px;
+        font-weight: 700;
+        color: #1e293b;
+        flex-shrink: 0;
+      }
+
+      .skill-value {
+        color: #334155;
+      }
+
+      /* Projects */
+      .project-item {
+        margin-bottom: 12px;
+      }
+
+      .project-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 3px;
+      }
+
+      .project-title {
+        font-size: 13.5px;
+        font-weight: 700;
+        color: #0f172a;
+      }
+
+      .project-links a {
+        font-size: 11.5px;
+        color: #2563eb;
+        text-decoration: none;
+        font-weight: 600;
+        margin-left: 8px;
+      }
+
+      .project-tech {
+        font-size: 11.5px;
+        font-weight: 600;
+        color: #475569;
+        margin-bottom: 4px;
+      }
+
+      ul.bullets {
+        list-style-type: disc;
+        padding-left: 18px;
+        color: #334155;
+      }
+
+      ul.bullets li {
+        font-size: 12.5px;
+        margin-bottom: 3px;
+        line-height: 1.5;
+      }
+
+      /* Education */
+      .edu-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+
+      .edu-degree {
+        font-weight: 700;
+        color: #0f172a;
+        font-size: 13px;
+      }
+
+      .edu-inst {
+        color: #475569;
+        font-size: 12.5px;
+      }
+
+      .edu-date {
+        font-size: 12px;
+        font-weight: 600;
+        color: #64748b;
+      }
+
+      /* Print styles for A4 1-Page PDF Export */
+      @media print {
+        .no-print {
+          display: none !important;
+        }
+        body {
+          background: none;
+          padding: 0;
+        }
+        .resume-container {
+          border: none;
+          box-shadow: none;
+          padding: 0;
+          max-width: 100%;
+        }
+        @page {
+          margin: 12mm 15mm;
+          size: A4 portrait;
+        }
+      }
+
+      .no-print-bar {
+        max-width: 800px;
+        margin: 0 auto 12px auto;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .btn-download {
+        background: #2563eb;
+        color: #ffffff;
+        border: none;
+        padding: 9px 18px;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 700;
+        border-radius: 6px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+        transition: background 0.15s, transform 0.12s;
+      }
+
+      .btn-download:hover {
+        background: #1d4ed8;
+        transform: translateY(-1px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="no-print-bar no-print">
+      <button onclick="window.print()" class="btn-download">
+        📥 Download PDF / Print Resume
+      </button>
+    </div>
+
+    <div class="resume-container">
+      <!-- Header -->
+      <header>
+        <h1>Syed Najmus Shakib</h1>
+        <div class="subtitle">Full Stack Developer | Python & React</div>
+        <div class="contact-info">
+          <span>📍 Sylhet, Bangladesh</span>
+          <span>📞 +8801401997130</span>
+          <span
+            >✉️
+            <a href="mailto:syednazmusshakib94@gmail.com"
+              >syednazmusshakib94@gmail.com</a
+            ></span
+          >
+          <span
+            >🌐
+            <a href="https://najmus-shakib.vercel.app" target="_blank"
+              >Portfolio</a
+            ></span
+          >
+          <span
+            >💻
+            <a href="https://github.com/najmus-shakib01" target="_blank"
+              >GitHub</a
+            ></span
+          >
+          <span
+            >🔗
+            <a href="https://www.linkedin.com/in/najmus-shakib-686985264/" target="_blank">LinkedIn</a></span
+          >
+        </div>
+      </header>
+
+      <!-- Professional Summary -->
+      <section class="summary">
+        <div class="section-title">Professional Summary</div>
+        <p>
+          Detail-oriented Full Stack Developer specializing in building
+          high-performance web applications with Python (Django REST Framework)
+          and React.js. Experienced in designing RESTful micro-architectures,
+          implementing responsive frontends, and optimizing database queries.
+          Passionate about writing clean, maintainable code and solving complex
+          technical challenges.
+        </p>
+      </section>
+
+      <!-- Technical Skills -->
+      <section>
+        <div class="section-title">Technical Skills</div>
+        <div class="skills-grid">
+          <div class="skill-group">
+            <span class="skill-label">Backend Development:</span>
+            <span class="skill-value"
+              >Python, Django, Django REST Framework (DRF), JWT Authentication,
+              RESTful APIs</span
+            >
+          </div>
+          <div class="skill-group">
+            <span class="skill-label">Frontend Development:</span>
+            <span class="skill-value"
+              >JavaScript (ES6+), React.js, Tailwind CSS, HTML5, CSS3,
+              DaisyUI</span
+            >
+          </div>
+          <div class="skill-group">
+            <span class="skill-label">Databases & Tools:</span>
+            <span class="skill-value"
+              >PostgreSQL, MySQL, SQLite, Git, GitHub, Vite, Vercel,
+              Postman</span
+            >
+          </div>
+          <div class="skill-group">
+            <span class="skill-label">Core Concepts:</span>
+            <span class="skill-value"
+              >Data Structures & Algorithms, Object-Oriented Programming (OOP),
+              Full-Stack Architecture</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section>
+        <div class="section-title">Key Technical Projects</div>
+
+        <!-- Project 1 -->
+        <div class="project-item">
+          <div class="project-header">
+            <span class="project-title"
+              >LuxeCommerce — Full-Stack E-Commerce Platform</span
+            >
+            <div class="project-links">
+              <a href="https://e-shops-bice.vercel.app/" target="_blank"
+                >Live Demo</a
+              >
+              <a
+                href="https://github.com/najmus-shakib01/E-Commerce-Client"
+                target="_blank"
+                >GitHub Client</a
+              >
+              <a
+                href="https://github.com/najmus-shakib01/E-Commerce-Server"
+                target="_blank"
+                >GitHub Server</a
+              >
+            </div>
+          </div>
+          <div class="project-tech">
+            Tech Stack: React.js, Django REST Framework, PostgreSQL, Tailwind
+            CSS, JWT
+          </div>
+          <ul class="bullets">
+            <li>
+              Architected a decoupled e-commerce web application featuring
+              secure JWT authentication, product catalog filtering, and cart
+              state management.
+            </li>
+            <li>
+              Designed scalable REST API endpoints for inventory management,
+              user orders, and payment workflow integrations.
+            </li>
+            <li>
+              Optimized frontend state management and API data fetching,
+              reducing page load latency by ~45%.
+            </li>
+          </ul>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-item">
+          <div class="project-header">
+            <span class="project-title"
+              >Ubaydullah Tasnim — Author & Publishing Portal</span
+            >
+            <div class="project-links">
+              <a href="https://ubaydullah-tasnim.vercel.app/" target="_blank"
+                >Live Demo</a
+              >
+              <a
+                href="https://github.com/ubaydullahtasnimosd/client"
+                target="_blank"
+                >GitHub Client</a
+              >
+              <a
+                href="https://github.com/ubaydullahtasnimosd/server"
+                target="_blank"
+                >GitHub Server</a
+              >
+            </div>
+          </div>
+          <div class="project-tech">
+            Tech Stack: React.js, Django REST Framework, PostgreSQL, Tailwind
+            CSS
+          </div>
+          <ul class="bullets">
+            <li>
+              Developed a content-heavy digital showcase platform for book
+              publications, reader reviews, and blog post archives.
+            </li>
+            <li>
+              Built structured REST endpoints for managing articles, reader
+              feedback, and book categories in Django backend.
+            </li>
+            <li>
+              Created a responsive, accessible user interface adhering to modern
+              readability standards using Tailwind CSS.
+            </li>
+          </ul>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-item">
+          <div class="project-header">
+            <span class="project-title"
+              >Jamiya Husainiya Madrasha — Institutional Portal</span
+            >
+            <div class="project-links">
+              <a href="https://jamiyahusainiya.vercel.app/" target="_blank"
+                >Live Demo</a
+              >
+              <a
+                href="https://github.com/jamiyahusainiyaosd/client"
+                target="_blank"
+                >GitHub Client</a
+              >
+              <a
+                href="https://github.com/jamiyahusainiyaosd/server"
+                target="_blank"
+                >GitHub Server</a
+              >
+            </div>
+          </div>
+          <div class="project-tech">
+            Tech Stack: React.js, Django REST Framework, PostgreSQL, Tailwind
+            CSS
+          </div>
+          <ul class="bullets">
+            <li>
+              Engineered a centralized web portal digitizing institutional
+              notices, academic directories, and result publications.
+            </li>
+            <li>
+              Implemented real-time notice updates and secure administrative
+              CRUD functionality serving 500+ active users.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section>
+        <div class="section-title">Education</div>
+        <div class="edu-item">
+          <div>
+            <span class="edu-degree"
+              >Diploma in Computer Science and Technology (CST)</span
+            >
+            <div class="edu-inst">
+              Habiganj Polytechnic Institute, Bangladesh | <strong>CGPA: 3.17 / 4.00</strong>
+            </div>
+          </div>
+          <span class="edu-date">2022 – 2026</span>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

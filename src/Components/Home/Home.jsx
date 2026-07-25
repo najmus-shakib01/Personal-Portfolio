@@ -131,7 +131,7 @@ const Home = () => {
           {/* CTA buttons */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginTop: '0.5rem' }}>
             <a
-              href="https://drive.google.com/file/d/12j3pKafAFE42aA9KYj3j64pXWlr9hOWM/view?usp=drive_link"
+              href="/resume.html"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary"
@@ -154,7 +154,7 @@ const Home = () => {
           >
             {[
               { value: '3+', label: 'Projects Built' },
-              { value: '2+', label: 'Years Learning' },
+              { value: '4+', label: 'Years Learning' },
               { value: '20+', label: 'Technologies' },
             ].map(stat => (
               <div key={stat.label}>
