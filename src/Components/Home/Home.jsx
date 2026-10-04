@@ -1,5 +1,4 @@
 import profileImg from '../../assets/image/photo_2025-01-04_23-53-48 (2).jpg'
-import TextChange from '../TextChange/TextChange'
 
 const Home = () => {
   return (
@@ -95,17 +94,17 @@ const Home = () => {
 
           {/* Headline */}
           <h1
+            className="hero-headline"
             style={{
               fontFamily: 'var(--font-display)',
               fontWeight: 800,
-              fontSize: 'clamp(1.8rem, 4vw, 3rem)',
-              lineHeight: 1.15,
+              fontSize: 'clamp(1.75rem, 3.2vw, 2.75rem)',
+              lineHeight: 1.2,
               letterSpacing: '-0.02em',
               color: 'var(--black)',
-              minHeight: '4rem',
             }}
           >
-            <TextChange />
+            Hi, I'm <span style={{ color: 'var(--blue)', whiteSpace: 'nowrap' }}>Najmus Shakib</span>
           </h1>
 
           {/* Divider */}
@@ -257,10 +256,18 @@ const Home = () => {
       <style>{`
         @media (min-width: 768px) {
           .home-grid {
-            grid-template-columns: 1fr 1fr !important;
+            grid-template-columns: 1.2fr 0.8fr !important;
           }
           .home-img-side {
             order: 1;
+          }
+        }
+        @media (min-width: 1024px) {
+          .home-grid {
+            grid-template-columns: 1.35fr 0.65fr !important;
+          }
+          .hero-headline {
+            white-space: nowrap !important;
           }
         }
       `}</style>
