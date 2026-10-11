@@ -1,10 +1,31 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { FiCode, FiExternalLink, FiGithub, FiX, FiBookOpen, FiCheckCircle, FiTarget, FiLayers, FiTrendingUp } from 'react-icons/fi'
 
 /* eslint-disable react/prop-types */
 const ProjectCard = ({ title, description, image, demoLink, frontend, backend, tags, caseStudy }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [isCaseStudyOpen, setIsCaseStudyOpen] = useState(false)
+
+  // UX Improvement: Lock body scroll & support Escape key when modal is open
+  useEffect(() => {
+    const isAnyModalOpen = isOpen || isCaseStudyOpen
+    if (isAnyModalOpen) {
+      document.body.style.overflow = 'hidden'
+      const handleKeyDown = e => {
+        if (e.key === 'Escape') {
+          setIsOpen(false)
+          setIsCaseStudyOpen(false)
+        }
+      }
+      window.addEventListener('keydown', handleKeyDown)
+      return () => {
+        document.body.style.overflow = 'unset'
+        window.removeEventListener('keydown', handleKeyDown)
+      }
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen, isCaseStudyOpen])
 
   return (
     <>

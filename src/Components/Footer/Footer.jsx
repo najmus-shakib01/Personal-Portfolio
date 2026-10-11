@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import {
   FaArrowUp,
   FaCode,
@@ -22,6 +23,8 @@ const codingProfiles = [
 const quickLinks = [
   { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
+  { name: 'Education', href: '#education' },
+  { name: 'Certificate', href: '#certificate' },
   { name: 'Skills', href: '#skills' },
   { name: 'Projects', href: '#projects' },
   { name: 'Contact', href: '#contact' },
@@ -37,7 +40,18 @@ const socials = [
 ]
 
 const Footer = () => {
+  const [showTopBtn, setShowTopBtn] = useState(false)
   const year = new Date().getFullYear()
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowTopBtn(window.scrollY > 400)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
 
   return (
@@ -247,7 +261,7 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Scroll to top */}
+      {/* Scroll to top button (UX: only visible when scrolled down) */}
       <button
         onClick={scrollTop}
         aria-label="Scroll to top"
@@ -266,7 +280,10 @@ const Footer = () => {
           justifyContent: 'center',
           cursor: 'pointer',
           zIndex: 50,
-          transition: 'transform 0.12s ease, box-shadow 0.12s ease',
+          opacity: showTopBtn ? 1 : 0,
+          pointerEvents: showTopBtn ? 'auto' : 'none',
+          transform: showTopBtn ? 'scale(1)' : 'scale(0.8)',
+          transition: 'all 0.2s ease',
         }}
         onMouseEnter={e => {
           e.currentTarget.style.transform = 'translate(-2px,-2px)'

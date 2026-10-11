@@ -1,6 +1,7 @@
 import { Toaster } from 'react-hot-toast'
 import './App.css'
 import About from './Components/About/About'
+import Education from './Components/Education/Education'
 import Certificate from './Components/Certificate/Certificate'
 import Contact from './Components/Contact/Contact'
 import Experience from './Components/Experience/Experience'
@@ -31,6 +32,7 @@ const App = () => {
       <main>
         <Home />
         <About />
+        <Education />
         <Certificate />
         <Experience />
         <Project />

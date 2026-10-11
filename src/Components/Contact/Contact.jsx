@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { FaEnvelope, FaPaperPlane, FaPhoneAlt, FaUndo } from 'react-icons/fa'
+import { FiCopy, FiCheck } from 'react-icons/fi'
 import { MdLocationOn } from 'react-icons/md'
 import { sendContactMessage } from './ContactApi'
 
@@ -36,6 +37,16 @@ const INIT = { name: '', email: '', message: '' }
 const Contact = () => {
   const [form, setForm] = useState(INIT)
   const [loading, setLoading] = useState(false)
+  const [copiedKey, setCopiedKey] = useState(null)
+
+  const handleCopy = (e, text, label) => {
+    e.preventDefault()
+    e.stopPropagation()
+    navigator.clipboard.writeText(text)
+    setCopiedKey(label)
+    toast.success(`${label} copied to clipboard!`)
+    setTimeout(() => setCopiedKey(null), 2000)
+  }
 
   const onChange = e => setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
 
@@ -68,20 +79,12 @@ const Contact = () => {
     >
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem' }}>
         {/* Header */}
-        <div style={{ marginBottom: '3rem' }}>
+        <div className="section-header">
           <span className="tag">Contact</span>
-          <h2 className="section-title" style={{ marginTop: '1rem' }}>
+          <h2 className="section-title">
             Get In <span>Touch</span>
           </h2>
-          <p
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.9rem',
-              color: '#555',
-              marginTop: '0.75rem',
-              maxWidth: '480px',
-            }}
-          >
+          <p className="section-desc">
             Have a project in mind or want to discuss opportunities? Feel free to reach out!
           </p>
         </div>
@@ -106,8 +109,8 @@ const Contact = () => {
                 rel="noopener noreferrer"
                 style={{
                   display: 'flex',
-                  alignItems: 'flex-start',
-                  gap: '1rem',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
                   padding: '1.25rem',
                   border: 'var(--border)',
                   boxShadow: 'var(--shadow)',
@@ -127,46 +130,85 @@ const Contact = () => {
                   e.currentTarget.style.background = 'var(--cream)'
                 }}
               >
-                <div
-                  style={{
-                    width: '42px',
-                    height: '42px',
-                    background: info.color,
-                    color: '#fff',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    border: 'var(--border)',
-                    flexShrink: 0,
-                  }}
-                >
-                  {info.icon}
-                </div>
-                <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', overflow: 'hidden' }}>
                   <div
                     style={{
+                      width: '42px',
+                      height: '42px',
+                      background: info.color,
+                      color: '#fff',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      border: 'var(--border)',
+                      flexShrink: 0,
+                    }}
+                  >
+                    {info.icon}
+                  </div>
+                  <div style={{ minWidth: 0 }}>
+                    <div
+                      style={{
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.7rem',
+                        fontWeight: 700,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.08em',
+                        color: '#888',
+                        marginBottom: '4px',
+                      }}
+                    >
+                      {info.label}
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.85rem',
+                        color: 'var(--black)',
+                        wordBreak: 'break-all',
+                      }}
+                    >
+                      {info.value}
+                    </div>
+                  </div>
+                </div>
+
+                {info.label !== 'Location' && (
+                  <button
+                    type="button"
+                    onClick={e => handleCopy(e, info.value, info.label)}
+                    title={`Copy ${info.label}`}
+                    aria-label={`Copy ${info.label}`}
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '5px',
+                      padding: '6px 10px',
+                      marginLeft: '12px',
+                      background: copiedKey === info.label ? '#22c55e' : 'var(--white)',
+                      color: copiedKey === info.label ? '#ffffff' : 'var(--black)',
+                      border: 'var(--border)',
                       fontFamily: 'var(--font-mono)',
                       fontSize: '0.7rem',
                       fontWeight: 700,
+                      letterSpacing: '0.04em',
                       textTransform: 'uppercase',
-                      letterSpacing: '0.08em',
-                      color: '#888',
-                      marginBottom: '4px',
+                      cursor: 'pointer',
+                      boxShadow: '2px 2px 0 var(--black)',
+                      transition: 'all 0.15s ease',
+                      flexShrink: 0,
+                    }}
+                    onMouseEnter={e => {
+                      if (copiedKey !== info.label) e.currentTarget.style.background = 'var(--accent)'
+                    }}
+                    onMouseLeave={e => {
+                      if (copiedKey !== info.label) e.currentTarget.style.background = 'var(--white)'
                     }}
                   >
-                    {info.label}
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.85rem',
-                      color: 'var(--black)',
-                      wordBreak: 'break-all',
-                    }}
-                  >
-                    {info.value}
-                  </div>
-                </div>
+                    {copiedKey === info.label ? <FiCheck size={12} /> : <FiCopy size={12} />}
+                    <span>{copiedKey === info.label ? 'Copied' : 'Copy'}</span>
+                  </button>
+                )}
               </a>
             ))}
 

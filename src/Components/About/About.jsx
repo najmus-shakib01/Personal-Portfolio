@@ -69,20 +69,12 @@ const About = () => {
     >
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem' }}>
         {/* Header */}
-        <div style={{ marginBottom: '3.5rem' }}>
+        <div className="section-header">
           <span className="tag">About Me</span>
-          <h2 className="section-title" style={{ marginTop: '1rem' }}>
+          <h2 className="section-title">
             My <span>Journey</span>
           </h2>
-          <p
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.9rem',
-              color: '#555',
-              marginTop: '0.75rem',
-              maxWidth: '480px',
-            }}
-          >
+          <p className="section-desc">
             From programming novice to full-stack developer
           </p>
         </div>
@@ -142,7 +134,8 @@ const About = () => {
               </p>
               {[
                 ['Location', 'Habiganj, Sylhet, Bangladesh'],
-                ['Education', 'CSE Fundamentals — Phitron'],
+                ['Education', 'Diploma in CST — Habiganj Polytechnic'],
+                ['Training', 'CSE Fundamentals — Phitron (1 Yr)'],
                 ['Focus', 'Full Stack Web Development'],
                 ['Status', 'Open to opportunities'],
               ].map(([k, v]) => (

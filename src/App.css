@@ -1,31 +1,54 @@
-/* App.css */
-
-/* Section spacing */
+/* Section spacing & smooth scroll offset for fixed navbar */
 section {
   position: relative;
+  scroll-margin-top: 80px;
 }
 
 /* Tag / badge */
 .tag {
   display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-family: inherit;
+  font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  padding: 3px 10px;
+  padding: 4px 12px;
   border: 1.5px solid var(--black);
   background: var(--accent);
   color: var(--black);
+  box-shadow: 2px 2px 0 var(--black);
+}
+
+/* Standardized Centered Section Header */
+.section-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section-header .tag {
+  margin-bottom: 0.75rem;
 }
 
 /* Heading style */
 .section-title {
-  font-family: var(--font-display);
+  font-family: inherit;
   font-weight: 800;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  line-height: 1.1;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1.15;
   letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.section-header .section-desc {
+  font-size: 0.95rem;
+  color: #555;
+  margin-top: 0.75rem;
+  max-width: 580px;
+  line-height: 1.7;
+  text-align: center;
 }
 
 .section-title span {

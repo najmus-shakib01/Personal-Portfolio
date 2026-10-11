@@ -104,7 +104,7 @@ const Home = () => {
               color: 'var(--black)',
             }}
           >
-            Hi, I'm <span style={{ color: 'var(--blue)', whiteSpace: 'nowrap' }}>Najmus Shakib</span>
+            Hi, I&apos;m <span style={{ color: 'var(--blue)', whiteSpace: 'nowrap' }}>Najmus Shakib</span>
           </h1>
 
           {/* Divider */}
