@@ -1,62 +1,42 @@
+import { useTranslation } from 'react-i18next'
 import aboutImg from '../../assets/image/7358653-removebg-preview.png'
 
-const cards = [
-  {
-    num: '01',
-    title: 'Frontend Development Journey',
-    color: 'var(--blue)',
-    bg: 'var(--blue-light)',
-    body: (
-      <>
-        Initially intimidated by programming, I discovered my passion through building
-        websites with{' '}
-        <mark>HTML</mark>, <mark>CSS</mark>, <mark>JavaScript</mark> and <mark>Tailwind</mark>.
-        My enthusiasm grew as I mastered{' '}
-        <mark>React + Vite</mark>, creating increasingly complex and interactive web
-        applications that showcased my evolving design sensibilities and technical skills.
-      </>
-    ),
-  },
-  {
-    num: '02',
-    title: 'Backend Development Expertise',
-    color: '#7c3aed',
-    bg: '#f5f3ff',
-    body: (
-      <>
-        Through structured learning in <mark style={{ background: '#ede9fe' }}>OOP</mark> and{' '}
-        <mark style={{ background: '#ede9fe' }}>Database</mark> systems, I developed robust
-        backend solutions using{' '}
-        <mark style={{ background: '#ede9fe' }}>Python</mark>,{' '}
-        <mark style={{ background: '#ede9fe' }}>Django</mark>, and{' '}
-        <mark style={{ background: '#ede9fe' }}>Django REST Framework</mark>. I gained
-        proficiency in building{' '}
-        <mark style={{ background: '#ede9fe' }}>RESTful APIs</mark> and testing them with{' '}
-        <mark style={{ background: '#ede9fe' }}>Postman</mark>.
-      </>
-    ),
-  },
-  {
-    num: '03',
-    title: 'Programming Foundation',
-    color: '#059669',
-    bg: '#ecfdf5',
-    body: (
-      <>
-        My technical foundation was built through rigorous problem-solving in{' '}
-        <mark style={{ background: '#d1fae5' }}>C</mark> and{' '}
-        <mark style={{ background: '#d1fae5' }}>C++</mark>, followed by{' '}
-        <mark style={{ background: '#d1fae5' }}>data structures</mark> and{' '}
-        <mark style={{ background: '#d1fae5' }}>algorithms</mark>. While I appreciated the
-        logical training, I discovered my true passion lies in{' '}
-        <mark style={{ background: '#d1fae5' }}>application development</mark>, where I can
-        combine technical skills with creative problem-solving.
-      </>
-    ),
-  },
-]
-
 const About = () => {
+  const { t, i18n } = useTranslation('about')
+  const isBn = i18n.language === 'bn'
+
+  const facts = [
+    [t('fact_location_label', 'Location'), t('fact_location_val', 'Sylhet, Bangladesh')],
+    [t('fact_education_label', 'Education'), t('fact_education_val', 'Diploma in CST')],
+    [t('fact_training_label', 'Training'), t('fact_training_val', 'Phitron (1 Year SE)')],
+    [t('fact_focus_label', 'Focus'), t('fact_focus_val', 'Full Stack / Django + React')],
+    [t('fact_status_label', 'Status'), t('fact_status_val', 'Open to Work')],
+  ]
+
+  const journeyCards = [
+    {
+      num: isBn ? '০১' : '01',
+      title: t('card1_title', 'How I Got Into Tech'),
+      color: 'var(--blue)',
+      bg: 'var(--blue-light)',
+      body: t('card1_body', 'Started with a passion for logic and problem-solving, exploring programming languages like C and C++, and building algorithms on competitive coding platforms.'),
+    },
+    {
+      num: isBn ? '০২' : '02',
+      title: t('card2_title', 'What Drives My Work'),
+      color: '#7c3aed',
+      bg: '#f5f3ff',
+      body: t('card2_body', 'I love bridging robust backends with beautiful, responsive interfaces. Designing scalable architectures and writing clean code motivates me every day.'),
+    },
+    {
+      num: isBn ? '০৩' : '03',
+      title: t('card3_title', 'Beyond the Screen'),
+      color: '#059669',
+      bg: '#ecfdf5',
+      body: t('card3_body', 'When not coding, I enjoy reading, exploring tech communities, mentoring aspiring programmers, and learning new tools in modern web development.'),
+    },
+  ]
+
   return (
     <section
       id="about"
@@ -70,12 +50,12 @@ const About = () => {
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem' }}>
         {/* Header */}
         <div className="section-header">
-          <span className="tag">About Me</span>
+          <span className="tag">{t('tag', 'About Me')}</span>
           <h2 className="section-title">
-            My <span>Journey</span>
+            {t('title_prefix', 'My')} <span>{t('title_highlight', 'Journey')}</span>
           </h2>
           <p className="section-desc">
-            From programming novice to full-stack developer
+            {t('subtitle', 'From problem solver to full stack engineer')}
           </p>
         </div>
 
@@ -119,8 +99,8 @@ const About = () => {
                   <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f59e0b', display: 'inline-block' }} />
                   <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981', display: 'inline-block' }} />
                 </div>
-                <span>~/developer/workspace</span>
-                <span style={{ opacity: 0.6 }}>v2026</span>
+                <span>{t('terminal_title', 'about-me.sh — bash')}</span>
+                <span style={{ opacity: 0.6 }}>{isBn ? 'v২০২৬' : 'v2026'}</span>
               </div>
 
               <div
@@ -149,25 +129,7 @@ const About = () => {
                 background: 'var(--cream)',
               }}
             >
-              <p
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.7rem',
-                  fontWeight: 700,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.1em',
-                  color: 'var(--blue)',
-                  marginBottom: '0.75rem',
-                }}
-              >
-              </p>
-              {[
-                ['Location', 'Habiganj, Sylhet, Bangladesh'],
-                ['Education', 'Diploma in CST — Habiganj Polytechnic'],
-                ['Training', 'CSE Fundamentals — Phitron (1 Yr)'],
-                ['Focus', 'Full Stack Web Development'],
-                ['Status', 'Open to opportunities'],
-              ].map(([k, v]) => (
+              {facts.map(([k, v]) => (
                 <div
                   key={k}
                   style={{
@@ -189,7 +151,7 @@ const About = () => {
 
           {/* Cards */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            {cards.map(card => (
+            {journeyCards.map(card => (
               <div
                 key={card.num}
                 className="card"

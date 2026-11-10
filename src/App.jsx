@@ -1,3 +1,4 @@
+import { Routes, Route } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import './App.css'
 import About from './Components/About/About'
@@ -10,6 +11,22 @@ import Home from './Components/Home/Home'
 import Navbar from './Components/Navbar/Navbar'
 import Project from './Components/Project/Project'
 import './index.css'
+
+const PortfolioView = () => (
+  <>
+    <Navbar />
+    <main>
+      <Home />
+      <About />
+      <Education />
+      <Certificate />
+      <Experience />
+      <Project />
+      <Contact />
+    </main>
+    <Footer />
+  </>
+)
 
 const App = () => {
   return (
@@ -28,17 +45,11 @@ const App = () => {
           },
         }}
       />
-      <Navbar />
-      <main>
-        <Home />
-        <About />
-        <Education />
-        <Certificate />
-        <Experience />
-        <Project />
-        <Contact />
-      </main>
-      <Footer />
+      <Routes>
+        <Route path="/" element={<PortfolioView />} />
+        <Route path="/bn" element={<PortfolioView />} />
+        <Route path="*" element={<PortfolioView />} />
+      </Routes>
     </div>
   )
 }

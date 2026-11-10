@@ -1,8 +1,17 @@
 import { useState, useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 import ExperienceData from '../../Data/Experiences'
 import { FaSearch, FaTimes } from 'react-icons/fa'
 
 const categories = ['All', 'Frontend', 'Backend', 'Programming', 'Tools']
+
+const categoryKeyMap = {
+  All: 'category_all',
+  Frontend: 'category_frontend',
+  Backend: 'category_backend',
+  Programming: 'category_programming',
+  Tools: 'category_tools',
+}
 
 const categoryColors = {
   All: 'var(--black)',
@@ -12,7 +21,15 @@ const categoryColors = {
   Tools: '#ea580c',
 }
 
+const toBnNumber = (n, isBn) => {
+  if (!isBn) return n
+  const bnDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯']
+  return String(n).replace(/\d/g, d => bnDigits[d])
+}
+
 const Experience = () => {
+  const { t, i18n } = useTranslation('skills')
+  const isBn = i18n.language === 'bn'
   const [active, setActive] = useState('All')
   const [search, setSearch] = useState('')
 
@@ -51,12 +68,12 @@ const Experience = () => {
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem' }}>
         {/* Header */}
         <div className="section-header">
-          <span className="tag">Tech Stack</span>
+          <span className="tag">{t('tag', 'Tech Stack')}</span>
           <h2 className="section-title">
-            My <span>Skills</span>
+            {t('title_prefix', 'My')} <span>{t('title_highlight', 'Skills')}</span>
           </h2>
           <p className="section-desc">
-            Technologies, frameworks, and developer tools I use to build scalable web applications
+            {t('subtitle', 'Technologies, frameworks, and developer tools I use to build scalable web applications')}
           </p>
         </div>
 
@@ -88,7 +105,7 @@ const Experience = () => {
               type="text"
               value={search}
               onChange={e => setSearch(e.target.value)}
-              placeholder="Quick search skills... (e.g. React, Python, Next.js)"
+              placeholder={t('search_placeholder', 'Quick search skills... (e.g. React, Python, Next.js)')}
               style={{
                 width: '100%',
                 padding: '10px 38px 10px 38px',
@@ -166,7 +183,7 @@ const Experience = () => {
                   gap: '6px',
                 }}
               >
-                <span>{cat}</span>
+                <span>{t(categoryKeyMap[cat], cat)}</span>
                 <span
                   style={{
                     fontSize: '0.68rem',
@@ -177,7 +194,7 @@ const Experience = () => {
                     fontWeight: 800,
                   }}
                 >
-                  {count}
+                  {toBnNumber(count, isBn)}
                 </span>
               </button>
             )
@@ -259,7 +276,7 @@ const Experience = () => {
                       textAlign: 'center',
                     }}
                   >
-                    {skill.name}
+                    {t(`skill_names.${skill.name}`, skill.name)}
                   </span>
                 </a>
               )
@@ -278,10 +295,10 @@ const Experience = () => {
             }}
           >
             <p style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--black)', marginBottom: '0.5rem' }}>
-              No skills found for &quot;{search}&quot;
+              {t('empty_title', 'No skills found for')} &quot;{search}&quot;
             </p>
-            <p style={{ fontSize: '0.82rem', color: '#666', marginBottom: '1.25rem' }}>
-              Try searching for a different keyword or view all categories.
+            <p style={{ fontSize: '0.82rem', color: 'var(--text-muted, #71717a)', marginBottom: '1.25rem' }}>
+              {t('empty_desc', 'Try searching for a different keyword or reset categories.')}
             </p>
             <button
               onClick={() => {
@@ -291,7 +308,7 @@ const Experience = () => {
               className="btn-primary"
               style={{ fontSize: '0.75rem', padding: '8px 16px' }}
             >
-              Reset Filters
+              {t('btn_reset', 'Reset Filters')}
             </button>
           </div>
         )}
@@ -300,4 +317,4 @@ const Experience = () => {
   )
 }
 
-export default Experience;
+export default Experience

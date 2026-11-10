@@ -1,6 +1,9 @@
+import { useTranslation } from 'react-i18next'
 import profileImg from '../../assets/image/photo_2025-01-04_23-53-48 (2).jpg'
 
 const Home = () => {
+  const { t } = useTranslation('home')
+
   return (
     <section
       id="home"
@@ -88,7 +91,7 @@ const Home = () => {
                 color: '#16a34a',
               }}
             >
-              Available for work
+              {t('status_available', 'AVAILABLE FOR HIRE')}
             </span>
           </div>
 
@@ -104,7 +107,7 @@ const Home = () => {
               color: 'var(--black)',
             }}
           >
-            Hi, I&apos;m <span style={{ color: 'var(--blue)', whiteSpace: 'nowrap' }}>Najmus Shakib</span>
+            {t('greeting', "Hi, I'm")} <span style={{ color: 'var(--blue)', whiteSpace: 'nowrap' }}>{t('name', 'Najmus Shakib')}</span>
           </h1>
 
           {/* Divider */}
@@ -123,8 +126,7 @@ const Home = () => {
               maxWidth: '520px',
             }}
           >
-            Full Stack Developer specializing in modern web technologies and
-            creating seamless user experiences.
+            {t('subheading', 'Full Stack Developer building fast, scalable web applications with Python, Django, and React. Passionate about clean architecture and impactful user experiences.')}
           </p>
 
           {/* CTA buttons */}
@@ -135,10 +137,10 @@ const Home = () => {
               rel="noopener noreferrer"
               className="btn-primary"
             >
-              ↓ Resume
+              {t('btn_resume', 'View Resume')}
             </a>
             <a href="#contact" className="btn-secondary">
-              Contact Me →
+              {t('btn_contact', 'Get In Touch')}
             </a>
           </div>
 
@@ -152,9 +154,9 @@ const Home = () => {
             }}
           >
             {[
-              { value: '3+', label: 'Projects Built' },
-              { value: '4+', label: 'Years Learning' },
-              { value: '20+', label: 'Technologies' },
+              { value: t('stat_projects_val', '20+'), label: t('stat_projects_label', 'Projects Built') },
+              { value: t('stat_experience_val', '4+'), label: t('stat_experience_label', 'Years Coding') },
+              { value: t('stat_tech_val', '15+'), label: t('stat_tech_label', 'Tech Stack') },
             ].map(stat => (
               <div key={stat.label}>
                 <div
@@ -222,7 +224,7 @@ const Home = () => {
             >
               <img
                 src={profileImg}
-                alt="Najmus Shakib"
+                alt={t('name', 'Najmus Shakib')}
                 style={{
                   width: '100%',
                   height: '100%',
@@ -257,7 +259,7 @@ const Home = () => {
                 gap: '4px',
               }}
             >
-              <span>★</span> 2026 Ready
+              {t('badge_ready', '2026 Ready')}
             </div>
 
             {/* Corner label */}
@@ -279,7 +281,7 @@ const Home = () => {
                 boxShadow: '2px 2px 0px var(--black)',
               }}
             >
-              Full Stack Dev
+              {t('badge_role', 'Full Stack Dev')}
             </div>
           </div>
         </div>

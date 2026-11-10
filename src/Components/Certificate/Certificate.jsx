@@ -1,8 +1,11 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import certificateImg from '/public/image/Certificate.png'
 import { FaAward, FaCheckCircle, FaExternalLinkAlt } from 'react-icons/fa'
 
 const Certificate = () => {
+  const { t, i18n } = useTranslation('certificate')
+  const isBn = i18n.language === 'bn'
   const [copied, setCopied] = useState(false)
   const validationId = 'PHBATCH400417101011'
 
@@ -11,6 +14,29 @@ const Certificate = () => {
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }
+
+  const highlightItems = [
+    {
+      label: t('card_duration_label', 'Program Duration'),
+      val: t('card_duration_val', '1 Year'),
+      sub: t('card_duration_sub', 'Comprehensive Course'),
+    },
+    {
+      label: t('card_track_label', 'Track Chosen'),
+      val: t('card_track_val', 'Software Eng.'),
+      sub: t('card_track_sub', 'After 6 Months Core'),
+    },
+    {
+      label: t('card_result_label', 'Final Result'),
+      val: t('card_result_val', 'CGPA 4.0'),
+      sub: t('card_result_sub', 'Spring 2024'),
+    },
+    {
+      label: t('card_grad_label', 'Graduation'),
+      val: t('card_grad_val', 'Bootcamp'),
+      sub: t('card_grad_sub', 'Completed Capstone'),
+    },
+  ]
 
   return (
     <section
@@ -24,12 +50,12 @@ const Certificate = () => {
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem' }}>
         {/* Header */}
         <div className="section-header">
-          <span className="tag">Professional Certification</span>
+          <span className="tag">{t('tag', 'Professional Certification')}</span>
           <h2 className="section-title">
-            Certificate of <span>Achievement</span>
+            {t('title_prefix', 'Certificate of')} <span>{t('title_highlight', 'Achievement')}</span>
           </h2>
           <p className="section-desc">
-            1-Year intensive professional training program in CSE Fundamentals & Software Engineering at{' '}
+            {t('subtitle_prefix', '1-Year intensive professional training program in CSE Fundamentals & Software Engineering at')}{' '}
             <a
               href="https://phitron.io"
               target="_blank"
@@ -106,7 +132,7 @@ const Certificate = () => {
                   border: 'var(--border)',
                 }}
               >
-                Phitron • Software Engineering Track
+                {t('badge_track', 'Phitron • Software Engineering Track')}
               </div>
             </div>
 
@@ -125,7 +151,7 @@ const Certificate = () => {
                   padding: '10px 18px',
                 }}
               >
-                <FaCheckCircle /> Verify Credential <FaExternalLinkAlt style={{ fontSize: '0.7rem' }} />
+                <FaCheckCircle /> {t('btn_verify', 'Verify Credential')} <FaExternalLinkAlt style={{ fontSize: '0.7rem' }} />
               </a>
               <a
                 href="https://phitron.io"
@@ -140,7 +166,7 @@ const Certificate = () => {
                   padding: '10px 18px',
                 }}
               >
-                Visit Phitron <FaExternalLinkAlt style={{ fontSize: '0.7rem' }} />
+                {t('btn_phitron', 'Visit Phitron')} <FaExternalLinkAlt style={{ fontSize: '0.7rem' }} />
               </a>
             </div>
           </div>
@@ -155,12 +181,7 @@ const Certificate = () => {
                 gap: '12px',
               }}
             >
-              {[
-                { label: 'Program Duration', val: '1 Year', sub: 'Comprehensive Course' },
-                { label: 'Track Chosen', val: 'Software Eng.', sub: 'After 6 Months Core' },
-                { label: 'Final Result', val: 'CGPA 4.0', sub: 'Spring 2024' },
-                { label: 'Graduation', val: 'Bootcamp', sub: 'Completed Capstone' },
-              ].map(item => (
+              {highlightItems.map(item => (
                 <div
                   key={item.label}
                   className="card"
@@ -178,7 +199,7 @@ const Certificate = () => {
                       fontSize: '0.65rem',
                       textTransform: 'uppercase',
                       letterSpacing: '0.05em',
-                      color: '#666',
+                      color: 'var(--text-muted, #71717a)',
                     }}
                   >
                     {item.label}
@@ -197,7 +218,7 @@ const Certificate = () => {
                     style={{
                       fontFamily: 'var(--font-mono)',
                       fontSize: '0.68rem',
-                      color: '#444',
+                      color: 'var(--text-muted, #71717a)',
                     }}
                   >
                     {item.sub}
@@ -226,7 +247,7 @@ const Certificate = () => {
                   gap: '8px',
                 }}
               >
-                <FaAward color="var(--blue)" /> Course Journey & Specialization
+                <FaAward color="var(--blue)" /> {t('journey_title', 'Course Journey & Specialization')}
               </h3>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
@@ -248,7 +269,7 @@ const Certificate = () => {
                       fontFamily: 'var(--font-mono)',
                     }}
                   >
-                    01
+                    {isBn ? '০১' : '01'}
                   </div>
                   <div>
                     <h4
@@ -260,17 +281,17 @@ const Certificate = () => {
                         marginBottom: '4px',
                       }}
                     >
-                      Foundation Phase (Months 1–6)
+                      {t('step1_title', 'Foundation Phase (Months 1–6)')}
                     </h4>
                     <p
                       style={{
                         fontFamily: 'var(--font-mono)',
                         fontSize: '0.8rem',
-                        color: '#555',
+                        color: 'var(--text-muted, #71717a)',
                         lineHeight: 1.6,
                       }}
                     >
-                      Built strong programming and analytical fundamentals through intensive problem solving with <strong>C</strong>, <strong>C++</strong>, <strong>Data Structures</strong>, and <strong>Algorithms</strong>.
+                      {t('step1_desc', 'Built strong programming and analytical fundamentals through intensive problem solving with C, C++, Data Structures, and Algorithms.')}
                     </p>
                   </div>
                 </div>
@@ -293,7 +314,7 @@ const Certificate = () => {
                       fontFamily: 'var(--font-mono)',
                     }}
                   >
-                    02
+                    {isBn ? '০২' : '02'}
                   </div>
                   <div>
                     <h4
@@ -305,17 +326,17 @@ const Certificate = () => {
                         marginBottom: '4px',
                       }}
                     >
-                      Software Engineering Track (Months 7–12)
+                      {t('step2_title', 'Software Engineering Track (Months 7–12)')}
                     </h4>
                     <p
                       style={{
                         fontFamily: 'var(--font-mono)',
                         fontSize: '0.8rem',
-                        color: '#555',
+                        color: 'var(--text-muted, #71717a)',
                         lineHeight: 1.6,
                       }}
                     >
-                      Selected the specialized <strong>Software Engineering Track</strong> (instead of the Problem Solving Club) to focus on full-stack application architecture, databases, OOP principles, and real-world backend systems.
+                      {t('step2_desc', 'Selected the specialized Software Engineering Track to focus on full-stack application architecture, databases, OOP principles, and real-world backend systems.')}
                     </p>
                   </div>
                 </div>
@@ -338,7 +359,7 @@ const Certificate = () => {
                       fontFamily: 'var(--font-mono)',
                     }}
                   >
-                    03
+                    {isBn ? '০৩' : '03'}
                   </div>
                   <div>
                     <h4
@@ -350,17 +371,17 @@ const Certificate = () => {
                         marginBottom: '4px',
                       }}
                     >
-                      Graduation Bootcamp & Certification
+                      {t('step3_title', 'Graduation Bootcamp & Certification')}
                     </h4>
                     <p
                       style={{
                         fontFamily: 'var(--font-mono)',
                         fontSize: '0.8rem',
-                        color: '#555',
+                        color: 'var(--text-muted, #71717a)',
                         lineHeight: 1.6,
                       }}
                     >
-                      Successfully qualified for and completed the graduation <strong>Bootcamp</strong>, earning the <strong>Certificate of Achievement</strong> with an outstanding <strong>CGPA 4.0</strong>.
+                      {t('step3_desc', 'Successfully qualified for and completed the graduation Bootcamp, earning the Certificate of Achievement with an outstanding CGPA 4.0.')}
                     </p>
                   </div>
                 </div>
@@ -387,11 +408,11 @@ const Certificate = () => {
                     fontFamily: 'var(--font-mono)',
                     fontSize: '0.65rem',
                     textTransform: 'uppercase',
-                    color: '#666',
+                    color: 'var(--text-muted, #71717a)',
                     letterSpacing: '0.06em',
                   }}
                 >
-                  Credential Validation ID
+                  {t('validation_label', 'Credential Validation ID')}
                 </div>
                 <div
                   style={{
@@ -420,7 +441,7 @@ const Certificate = () => {
                   transition: 'all 0.15s ease',
                 }}
               >
-                {copied ? '✓ Copied!' : 'Copy ID'}
+                {copied ? `✓ ${t('btn_copied', 'Copied!')}` : t('btn_copy', 'Copy ID')}
               </button>
             </div>
           </div>

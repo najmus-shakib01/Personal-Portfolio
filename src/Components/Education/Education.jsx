@@ -1,6 +1,24 @@
+import { useTranslation } from 'react-i18next'
 import { FaAward, FaExternalLinkAlt, FaGraduationCap, FaMapMarkerAlt, FaUniversity } from 'react-icons/fa'
 
+const defaultSubjects = [
+  'Data Structures & Algorithms',
+  'Object-Oriented Programming (OOP)',
+  'Database Management Systems (DBMS)',
+  'Web Development',
+  'Operating Systems',
+  'Computer Networks',
+  'Software Engineering',
+  'Microprocessor & Interfacing',
+]
+
 const Education = () => {
+  const { t, i18n } = useTranslation('education')
+  const isBn = i18n.language === 'bn'
+
+  const rawSubjects = isBn ? t('subjects', { returnObjects: true }) : defaultSubjects
+  const subjects = Array.isArray(rawSubjects) ? rawSubjects : defaultSubjects
+
   return (
     <section
       id="education"
@@ -13,12 +31,12 @@ const Education = () => {
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem' }}>
         {/* Header */}
         <div className="section-header">
-          <span className="tag">Academic Background</span>
+          <span className="tag">{t('tag', 'Academic Background')}</span>
           <h2 className="section-title">
-            My <span>Education</span>
+            {t('title_prefix', 'My')} <span>{t('title_highlight', 'Education')}</span>
           </h2>
           <p className="section-desc">
-            Formal technical education and continuous learning that shaped my engineering foundation
+            {t('subtitle', 'Formal computer science education and foundational engineering training')}
           </p>
         </div>
 
@@ -69,7 +87,7 @@ const Education = () => {
                   border: 'var(--border)',
                 }}
               >
-                <FaUniversity size={11} /> BTEB Affiliated Govt. Institute
+                <FaUniversity size={11} /> {t('badge_bteb', 'BTEB Affiliated Govt. Polytechnic')}
               </div>
 
               <span
@@ -86,7 +104,7 @@ const Education = () => {
                   gap: '5px',
                 }}
               >
-                ● Class of 2026 (Graduated)
+                {t('status_graduated', 'Graduated • 2026')}
               </span>
             </div>
 
@@ -101,7 +119,7 @@ const Education = () => {
                 marginBottom: '0.5rem',
               }}
             >
-              Habiganj Polytechnic Institute
+              {t('institute_name', 'Habiganj Polytechnic Institute')}
             </h3>
 
             {/* Degree & Location */}
@@ -118,10 +136,10 @@ const Education = () => {
               }}
             >
               <span style={{ fontWeight: 700, color: 'var(--black)' }}>
-                Diploma in Engineering — Computer Science & Technology (CST)
+                {t('degree_name', 'Diploma in Computer Science & Technology')}
               </span>
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-                <FaMapMarkerAlt color="#dc2626" /> Habiganj, Sylhet, Bangladesh
+                <FaMapMarkerAlt color="#dc2626" /> {t('location', 'Habiganj, Sylhet, Bangladesh')}
               </span>
             </div>
 
@@ -143,10 +161,10 @@ const Education = () => {
                 }}
               >
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', color: '#666', textTransform: 'uppercase' }}>
-                  Cumulative CGPA
+                  {t('metric_cgpa_label', 'Cumulative GPA')}
                 </div>
                 <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', fontWeight: 800, color: 'var(--blue)', marginTop: '2px' }}>
-                  3.17 <span style={{ fontSize: '0.75rem', color: '#666' }}>/ 4.00</span>
+                  {t('metric_cgpa_val', '3.17')} <span style={{ fontSize: '0.75rem', color: '#666' }}>{t('metric_cgpa_max', '/ 4.00')}</span>
                 </div>
               </div>
 
@@ -159,10 +177,10 @@ const Education = () => {
                 }}
               >
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', color: '#666', textTransform: 'uppercase' }}>
-                  Academic Session
+                  {t('metric_session_label', 'Academic Session')}
                 </div>
                 <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 800, color: 'var(--black)', marginTop: '2px' }}>
-                  2021–2022
+                  {t('metric_session_val', '2021–2022')}
                 </div>
               </div>
 
@@ -175,10 +193,10 @@ const Education = () => {
                 }}
               >
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', color: '#666', textTransform: 'uppercase' }}>
-                  Graduation Year
+                  {t('metric_graduation_label', 'Passing Year')}
                 </div>
                 <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 800, color: 'var(--black)', marginTop: '2px' }}>
-                  2026
+                  {t('metric_graduation_val', '2026')}
                 </div>
               </div>
 
@@ -191,10 +209,10 @@ const Education = () => {
                 }}
               >
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', color: '#666', textTransform: 'uppercase' }}>
-                  Curriculum
+                  {t('metric_curriculum_label', 'Curriculum')}
                 </div>
                 <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', fontWeight: 800, color: 'var(--black)', marginTop: '2px' }}>
-                  4 Years CST
+                  {t('metric_curriculum_val', '4 Years CST')}
                 </div>
               </div>
             </div>
@@ -209,10 +227,7 @@ const Education = () => {
                 marginBottom: '1.5rem',
               }}
             >
-              Completed 4-year technical diploma program focused on core computer science foundations,
-              system architecture, and modern programming. Developed hands-on laboratory experience,
-              software project implementation, and problem-solving methodologies under the Bangladesh Technical
-              Education Board (BTEB) curriculum.
+              {t('description', 'Completed a comprehensive 4-year engineering curriculum focused on modern computer technology, algorithm design, software architecture, relational databases, computer networks, and practical laboratory projects.')}
             </p>
 
             {/* Core Coursework Badges */}
@@ -229,19 +244,10 @@ const Education = () => {
                   marginBottom: '8px',
                 }}
               >
-                Key Subject Areas Studied:
+                {t('subjects_title', 'Key Courses & Core Engineering Subjects')}
               </span>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {[
-                  'Data Structures & Algorithms',
-                  'Object-Oriented Programming (OOP)',
-                  'Database Management Systems (DBMS)',
-                  'Web Development',
-                  'Operating Systems',
-                  'Computer Networks',
-                  'Software Engineering',
-                  'Microprocessor & Interfacing',
-                ].map(subject => (
+                {subjects.map(subject => (
                   <span
                     key={subject}
                     style={{
@@ -274,7 +280,7 @@ const Education = () => {
                 textDecoration: 'none',
               }}
             >
-              Visit Institute Website <FaExternalLinkAlt size={11} />
+              {t('btn_visit_website', 'Visit Institute Portal')} <FaExternalLinkAlt size={11} />
             </a>
           </div>
 
@@ -299,7 +305,7 @@ const Education = () => {
                   gap: '8px',
                 }}
               >
-                <FaGraduationCap color="var(--blue)" size={20} /> Educational Timeline
+                <FaGraduationCap color="var(--blue)" size={20} /> {t('timeline_title', 'Full Educational Timeline')}
               </h4>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
@@ -321,7 +327,7 @@ const Education = () => {
                       letterSpacing: '0.08em',
                     }}
                   >
-                    2021 – 2026 • Academic Degree
+                    {t('timeline_academic_badge', 'Diploma in Engineering (2021–2026)')}
                   </span>
                   <h5
                     style={{
@@ -332,7 +338,7 @@ const Education = () => {
                       marginTop: '4px',
                     }}
                   >
-                    Diploma in Computer Science & Technology
+                    {t('degree_name', 'Diploma in Computer Science & Technology')}
                   </h5>
                   <p
                     style={{
@@ -343,7 +349,7 @@ const Education = () => {
                       lineHeight: 1.6,
                     }}
                   >
-                    Habiganj Polytechnic Institute (BTEB) — Achieved <strong>CGPA 3.17 / 4.00</strong> with a strong foundation in core computer science.
+                    {t('timeline_academic_desc', 'Habiganj Polytechnic Institute — Achieved CGPA 3.17 / 4.00.')}
                   </p>
                 </div>
 
@@ -365,7 +371,7 @@ const Education = () => {
                       letterSpacing: '0.08em',
                     }}
                   >
-                    2023 – 2024 • Professional Certification
+                    {t('timeline_training_badge', 'Specialized Professional Program (2023–2024)')}
                   </span>
                   <h5
                     style={{
@@ -376,7 +382,7 @@ const Education = () => {
                       marginTop: '4px',
                     }}
                   >
-                    CSE Fundamentals & Software Engineering Track
+                    {t('timeline_training_title', 'Phitron — Software Engineering Track')}
                   </h5>
                   <p
                     style={{
@@ -387,7 +393,7 @@ const Education = () => {
                       lineHeight: 1.6,
                     }}
                   >
-                    Phitron.io (1-Year Intensive Program) — Specialized in Software Engineering & completed Graduation Bootcamp with <strong>CGPA 4.0 / 4.0</strong>.
+                    {t('timeline_training_desc', '1-year intensive training covering C, C++, Data Structures, Algorithms, Python, Django, REST APIs, and modern web application development with CGPA 4.0.')}
                   </p>
                 </div>
               </div>
@@ -416,7 +422,7 @@ const Education = () => {
                   gap: '6px',
                 }}
               >
-                <FaAward color="#ea580c" /> Academic Verification
+                <FaAward color="#ea580c" /> {t('academic_verification_title', 'Academic Verification')}
               </div>
               <p
                 style={{
@@ -426,7 +432,7 @@ const Education = () => {
                   lineHeight: 1.6,
                 }}
               >
-                All institutional records and transcripts are registered under the <strong>Bangladesh Technical Education Board (BTEB)</strong> and <strong>Habiganj Polytechnic Institute</strong>. Official certificates are processed and verified.
+                {t('academic_verification_desc', 'All institutional records and transcripts are registered under the Bangladesh Technical Education Board (BTEB) and Habiganj Polytechnic Institute. Official certificates are processed and verified.')}
               </p>
             </div>
           </div>

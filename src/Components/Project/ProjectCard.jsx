@@ -1,8 +1,13 @@
 import { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { FiCode, FiExternalLink, FiGithub, FiX, FiBookOpen, FiCheckCircle, FiTarget, FiLayers, FiTrendingUp } from 'react-icons/fi'
+
+const bnDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯']
 
 /* eslint-disable react/prop-types */
 const ProjectCard = ({ title, description, image, demoLink, frontend, backend, tags, caseStudy }) => {
+  const { t, i18n } = useTranslation('projects')
+  const isBn = i18n.language === 'bn'
   const [isOpen, setIsOpen] = useState(false)
   const [isCaseStudyOpen, setIsCaseStudyOpen] = useState(false)
 
@@ -138,7 +143,7 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
               onMouseLeave={e => e.currentTarget.style.background = 'var(--blue)'}
             >
               <FiExternalLink size={13} />
-              Live Demo
+              {t('btn_live_demo', 'Live Demo')}
             </a>
 
             {caseStudy ? (
@@ -165,7 +170,7 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
                 onMouseLeave={e => e.currentTarget.style.background = 'var(--accent)'}
               >
                 <FiBookOpen size={13} />
-                Case Study
+                {t('btn_case_study', 'Case Study')}
               </button>
             ) : (
               <button
@@ -191,7 +196,7 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
                 onMouseLeave={e => e.currentTarget.style.background = 'var(--cream)'}
               >
                 <FiCode size={13} />
-                Code
+                {t('btn_code', 'Code')}
               </button>
             )}
 
@@ -220,7 +225,7 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
                 onMouseLeave={e => e.currentTarget.style.background = 'var(--cream)'}
               >
                 <FiCode size={13} />
-                View Source Code
+                {t('btn_view_source', 'View Source Code')}
               </button>
             )}
           </div>
@@ -270,7 +275,7 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
                   fontSize: '1rem',
                 }}
               >
-                View Source Code
+                {t('modal_code_title', 'View Source Code')}
               </span>
               <button
                 onClick={() => setIsOpen(false)}
@@ -312,7 +317,7 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
                 onMouseLeave={e => { e.currentTarget.style.background = 'var(--cream)'; e.currentTarget.style.transform = 'none' }}
               >
                 <span style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <FiGithub size={18} /> Frontend Code
+                  <FiGithub size={18} /> {t('modal_frontend_code', 'Frontend Code')}
                 </span>
                 <FiExternalLink size={14} style={{ opacity: 0.5 }} />
               </a>
@@ -340,7 +345,7 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
                   onMouseLeave={e => { e.currentTarget.style.background = 'var(--cream)'; e.currentTarget.style.transform = 'none' }}
                 >
                   <span style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <FiGithub size={18} /> Backend Code
+                    <FiGithub size={18} /> {t('modal_backend_code', 'Backend Code')}
                   </span>
                   <FiExternalLink size={14} style={{ opacity: 0.5 }} />
                 </a>
@@ -405,7 +410,7 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
                     marginBottom: '4px',
                   }}
                 >
-                  Project Case Study
+                  {t('modal_case_study_tag', 'Project Case Study')}
                 </span>
                 <h2
                   style={{
@@ -466,7 +471,7 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.5rem' }}>
                     <FiTarget color="#e11d48" size={18} />
                     <h4 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.95rem', color: '#be123c' }}>
-                      The Problem
+                      {t('modal_problem_title', 'The Problem')}
                     </h4>
                   </div>
                   <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: 'var(--black)', lineHeight: 1.6 }}>
@@ -478,7 +483,7 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.5rem' }}>
                     <FiCheckCircle color="#16a34a" size={18} />
                     <h4 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.95rem', color: '#15803d' }}>
-                      The Solution
+                      {t('modal_solution_title', 'The Solution')}
                     </h4>
                   </div>
                   <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: 'var(--black)', lineHeight: 1.6 }}>
@@ -493,7 +498,7 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.75rem' }}>
                     <FiLayers size={18} />
                     <h4 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1rem', color: 'var(--black)' }}>
-                      Architecture & Stack
+                      {t('modal_architecture_title', 'Architecture & Stack')}
                     </h4>
                   </div>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
@@ -522,7 +527,7 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
               {caseStudy.keyFeatures && (
                 <div>
                   <h4 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1rem', marginBottom: '0.75rem', color: 'var(--black)' }}>
-                    Key UX & Technical Highlights
+                    {t('modal_highlights_title', 'Key UX & Technical Highlights')}
                   </h4>
                   <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     {caseStudy.keyFeatures.map((feature, idx) => (
@@ -550,7 +555,7 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
                             flexShrink: 0,
                           }}
                         >
-                          0{idx + 1}
+                          {isBn ? `০${bnDigits[idx + 1] || idx + 1}` : `0${idx + 1}`}
                         </span>
                         {feature}
                       </li>
@@ -573,7 +578,7 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.4rem' }}>
                     <FiTrendingUp color="var(--blue)" size={18} />
                     <h4 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.95rem', color: 'var(--blue)' }}>
-                      Results & Impact
+                      {t('modal_impact_title', 'Results & Impact')}
                     </h4>
                   </div>
                   <p className="case-study-impact-text" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', color: '#1e3a8a', fontWeight: 700, lineHeight: 1.6 }}>
@@ -612,7 +617,7 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
                   textDecoration: 'none',
                 }}
               >
-                <FiExternalLink size={14} /> Live Demo
+                <FiExternalLink size={14} /> {t('btn_live_demo', 'Live Demo')}
               </a>
               <button
                 onClick={() => {
@@ -633,7 +638,7 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
                   cursor: 'pointer',
                 }}
               >
-                <FiCode size={14} /> Source Code
+                <FiCode size={14} /> {t('btn_code', 'Source Code')}
               </button>
             </div>
           </div>

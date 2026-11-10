@@ -1,50 +1,56 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { toast } from 'react-hot-toast'
 import { FaEnvelope, FaPaperPlane, FaPhoneAlt, FaUndo } from 'react-icons/fa'
 import { FiCopy, FiCheck } from 'react-icons/fi'
 import { MdLocationOn } from 'react-icons/md'
 import { sendContactMessage } from './ContactApi'
 
-const contactInfo = [
-  {
-    icon: <FaPhoneAlt size={18} />,
-    label: 'Phone',
-    value: '+880 1401 997130',
-    href: 'tel:+8801401997130',
-    color: 'var(--blue)',
-    bg: '#eff6ff',
-  },
-  {
-    icon: <FaEnvelope size={18} />,
-    label: 'Email',
-    value: 'syednazmusshakib94@gmail.com',
-    href: 'mailto:syednazmusshakib94@gmail.com',
-    color: '#dc2626',
-    bg: '#fef2f2',
-  },
-  {
-    icon: <MdLocationOn size={20} />,
-    label: 'Location',
-    value: 'Shayestaganj, Habiganj, Sylhet, Bangladesh',
-    href: 'https://www.google.ca/maps/place/Notun+Bridge+Point,+Shaestagonj,+Hobigonj/@24.2687434,91.4714239,16.83z',
-    color: '#059669',
-    bg: '#ecfdf5',
-  },
-]
-
 const INIT = { name: '', email: '', message: '' }
 
 const Contact = () => {
+  const { t, i18n } = useTranslation('contact')
+  const isBn = i18n.language === 'bn'
   const [form, setForm] = useState(INIT)
   const [loading, setLoading] = useState(false)
   const [copiedKey, setCopiedKey] = useState(null)
+
+  const contactInfo = [
+    {
+      key: 'phone',
+      icon: <FaPhoneAlt size={18} />,
+      label: t('label_phone', 'Phone'),
+      value: '+880 1401 997130',
+      href: 'tel:+8801401997130',
+      color: 'var(--blue)',
+      bg: '#eff6ff',
+    },
+    {
+      key: 'email',
+      icon: <FaEnvelope size={18} />,
+      label: t('label_email', 'Email'),
+      value: 'syednazmusshakib94@gmail.com',
+      href: 'mailto:syednazmusshakib94@gmail.com',
+      color: '#dc2626',
+      bg: '#fef2f2',
+    },
+    {
+      key: 'location',
+      icon: <MdLocationOn size={20} />,
+      label: t('label_location', 'Location'),
+      value: t('val_location', 'Shayestaganj, Habiganj, Sylhet, Bangladesh'),
+      href: 'https://www.google.ca/maps/place/Notun+Bridge+Point,+Shaestagonj,+Hobigonj/@24.2687434,91.4714239,16.83z',
+      color: '#059669',
+      bg: '#ecfdf5',
+    },
+  ]
 
   const handleCopy = (e, text, label) => {
     e.preventDefault()
     e.stopPropagation()
     navigator.clipboard.writeText(text)
     setCopiedKey(label)
-    toast.success(`${label} copied to clipboard!`)
+    toast.success(`${label} ${t('toast_copy', 'copied to clipboard!')}`)
     setTimeout(() => setCopiedKey(null), 2000)
   }
 
@@ -53,7 +59,7 @@ const Contact = () => {
   const onSubmit = async e => {
     e.preventDefault()
     if (!form.name || !form.email || !form.message) {
-      toast.error('Please fill all fields')
+      toast.error(isBn ? 'অনুগ্রহ করে সব ঘর পূরণ করুন' : 'Please fill all fields')
       return
     }
     setLoading(true)
@@ -62,7 +68,7 @@ const Contact = () => {
       toast.success(result.message)
       setForm(INIT)
     } catch (err) {
-      toast.error(err.message || 'Failed to send message')
+      toast.error(err.message || (isBn ? 'বার্তা পাঠানো ব্যর্থ হয়েছে' : 'Failed to send message'))
     } finally {
       setLoading(false)
     }
@@ -80,12 +86,12 @@ const Contact = () => {
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem' }}>
         {/* Header */}
         <div className="section-header">
-          <span className="tag">Contact</span>
+          <span className="tag">{t('tag', 'Contact')}</span>
           <h2 className="section-title">
-            Get In <span>Touch</span>
+            {t('title_prefix', 'Get In')} <span>{t('title_highlight', 'Touch')}</span>
           </h2>
           <p className="section-desc">
-            Have a project in mind or want to discuss opportunities? Feel free to reach out!
+            {t('subtitle', 'Have a project in mind or want to collaborate? Feel free to reach out directly!')}
           </p>
         </div>
 
@@ -103,9 +109,9 @@ const Contact = () => {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {contactInfo.map(info => (
               <a
-                key={info.label}
+                key={info.key}
                 href={info.href}
-                target={info.label === 'Location' ? '_blank' : undefined}
+                target={info.key === 'location' ? '_blank' : undefined}
                 rel="noopener noreferrer"
                 style={{
                   display: 'flex',
@@ -155,7 +161,7 @@ const Contact = () => {
                         fontWeight: 700,
                         textTransform: 'uppercase',
                         letterSpacing: '0.08em',
-                        color: '#888',
+                        color: 'var(--text-muted, #71717a)',
                         marginBottom: '4px',
                       }}
                     >
@@ -174,7 +180,7 @@ const Contact = () => {
                   </div>
                 </div>
 
-                {info.label !== 'Location' && (
+                {info.key !== 'location' && (
                   <button
                     type="button"
                     onClick={e => handleCopy(e, info.value, info.label)}
@@ -207,7 +213,7 @@ const Contact = () => {
                     }}
                   >
                     {copiedKey === info.label ? <FiCheck size={12} /> : <FiCopy size={12} />}
-                    <span>{copiedKey === info.label ? 'Copied' : 'Copy'}</span>
+                    <span>{copiedKey === info.label ? (isBn ? '✓ কপি সম্পন্ন' : '✓ Copied') : (isBn ? 'কপি' : 'Copy')}</span>
                   </button>
                 )}
               </a>
@@ -230,8 +236,9 @@ const Contact = () => {
                   lineHeight: 1.7,
                 }}
               >
-                💬 I typically respond within <strong>24 hours</strong>. Feel free to send a
-                message and I&apos;ll get back to you as soon as possible.
+                {t('availability_note_prefix', '💬 I typically respond within')}{' '}
+                <strong>{t('availability_note_time', '24 hours')}</strong>
+                {t('availability_note_suffix', ". Feel free to send a message and I'll get back to you as soon as possible.")}
               </p>
             </div>
           </div>
@@ -262,53 +269,87 @@ const Contact = () => {
               }}
             >
               <FaPaperPlane size={12} />
-              Send Me a Message
+              {t('form_header', 'Send Me a Message')}
             </div>
 
             <form onSubmit={onSubmit} style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              {[
-                { id: 'name', type: 'text', label: 'Your Name', placeholder: 'Enter your name' },
-                { id: 'email', type: 'email', label: 'Your Email', placeholder: 'Enter your email' },
-              ].map(field => (
-                <div key={field.id}>
-                  <label
-                    htmlFor={field.id}
-                    style={{
-                      display: 'block',
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.72rem',
-                      fontWeight: 700,
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.06em',
-                      color: '#444',
-                      marginBottom: '6px',
-                    }}
-                  >
-                    {field.label}
-                  </label>
-                  <input
-                    id={field.id}
-                    type={field.type}
-                    name={field.id}
-                    placeholder={field.placeholder}
-                    value={form[field.id]}
-                    onChange={onChange}
-                    required
-                    style={{
-                      width: '100%',
-                      padding: '12px 14px',
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.85rem',
-                      background: 'var(--white)',
-                      border: 'var(--border)',
-                      outline: 'none',
-                      color: 'var(--black)',
-                    }}
-                    onFocus={e => e.target.style.boxShadow = 'var(--shadow-blue)'}
-                    onBlur={e => e.target.style.boxShadow = 'none'}
-                  />
-                </div>
-              ))}
+              <div>
+                <label
+                  htmlFor="name"
+                  style={{
+                    display: 'block',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.72rem',
+                    fontWeight: 700,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.06em',
+                    color: 'var(--text-muted, #71717a)',
+                    marginBottom: '6px',
+                  }}
+                >
+                  {t('input_name_label', 'Your Name')}
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  name="name"
+                  placeholder={t('input_name_placeholder', 'Enter your full name')}
+                  value={form.name}
+                  onChange={onChange}
+                  required
+                  style={{
+                    width: '100%',
+                    padding: '12px 14px',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.85rem',
+                    background: 'var(--white)',
+                    border: 'var(--border)',
+                    outline: 'none',
+                    color: 'var(--black)',
+                  }}
+                  onFocus={e => e.target.style.boxShadow = 'var(--shadow-blue)'}
+                  onBlur={e => e.target.style.boxShadow = 'none'}
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="email"
+                  style={{
+                    display: 'block',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.72rem',
+                    fontWeight: 700,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.06em',
+                    color: 'var(--text-muted, #71717a)',
+                    marginBottom: '6px',
+                  }}
+                >
+                  {t('input_email_label', 'Email Address')}
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  name="email"
+                  placeholder={t('input_email_placeholder', 'name@example.com')}
+                  value={form.email}
+                  onChange={onChange}
+                  required
+                  style={{
+                    width: '100%',
+                    padding: '12px 14px',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.85rem',
+                    background: 'var(--white)',
+                    border: 'var(--border)',
+                    outline: 'none',
+                    color: 'var(--black)',
+                  }}
+                  onFocus={e => e.target.style.boxShadow = 'var(--shadow-blue)'}
+                  onBlur={e => e.target.style.boxShadow = 'none'}
+                />
+              </div>
 
               <div>
                 <label
@@ -320,17 +361,17 @@ const Contact = () => {
                     fontWeight: 700,
                     textTransform: 'uppercase',
                     letterSpacing: '0.06em',
-                    color: '#444',
+                    color: 'var(--text-muted, #71717a)',
                     marginBottom: '6px',
                   }}
                 >
-                  Your Message
+                  {t('input_message_label', 'Your Message')}
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   rows={5}
-                  placeholder="Type your message here..."
+                  placeholder={t('input_message_placeholder', 'Tell me about your project, ideas, or inquiry...')}
                   value={form.message}
                   onChange={onChange}
                   required
@@ -375,7 +416,7 @@ const Contact = () => {
                   }}
                 >
                   <FaPaperPlane size={13} />
-                  {loading ? 'Sending...' : 'Send Message'}
+                  {loading ? t('btn_sending', 'Sending...') : t('btn_send', 'Send Message')}
                 </button>
                 <button
                   type="button"
@@ -400,7 +441,7 @@ const Contact = () => {
                   onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
                 >
                   <FaUndo size={12} />
-                  Reset
+                  {t('btn_reset', 'Reset')}
                 </button>
               </div>
             </form>
@@ -419,4 +460,4 @@ const Contact = () => {
   )
 }
 
-export default Contact;
+export default Contact

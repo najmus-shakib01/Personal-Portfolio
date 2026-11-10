@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
 import { FiMenu, FiX, FiSun, FiMoon } from "react-icons/fi";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "./LanguageSwitcher";
 
-const navLinks = [
-  { name: "Home", href: "#home", id: "home" },
-  { name: "About", href: "#about", id: "about" },
-  { name: "Education", href: "#education", id: "education" },
-  { name: "Certificate", href: "#certificate", id: "certificate" },
-  { name: "Skills", href: "#skills", id: "skills" },
-  { name: "Projects", href: "#projects", id: "projects" },
-  { name: "Contact", href: "#contact", id: "contact" },
+const navItems = [
+  { key: "home", id: "home", name: "Home", href: "#home" },
+  { key: "about", id: "about", name: "About", href: "#about" },
+  { key: "education", id: "education", name: "Education", href: "#education" },
+  { key: "certificate", id: "certificate", name: "Certificate", href: "#certificate" },
+  { key: "skills", id: "skills", name: "Skills", href: "#skills" },
+  { key: "projects", id: "projects", name: "Projects", href: "#projects" },
+  { key: "contact", id: "contact", name: "Contact", href: "#contact" },
 ];
 
 const Navbar = () => {
+  const { t } = useTranslation("navbar");
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
@@ -31,9 +34,11 @@ const Navbar = () => {
     if (saved === "dark") {
       document.documentElement.classList.add("dark");
       setTheme("dark");
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#0b0f17');
     } else {
       document.documentElement.classList.remove("dark");
       setTheme("light");
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#f5f2eb');
     }
   }, []);
 
@@ -43,8 +48,10 @@ const Navbar = () => {
     localStorage.setItem("theme", nextTheme);
     if (nextTheme === "dark") {
       document.documentElement.classList.add("dark");
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#0b0f17');
     } else {
       document.documentElement.classList.remove("dark");
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#f5f2eb');
     }
   };
 
@@ -60,13 +67,13 @@ const Navbar = () => {
       }
 
       // Determine active section based on scroll position
-      const sections = navLinks.map(link => document.getElementById(link.id));
+      const sections = navItems.map(link => document.getElementById(link.id));
       const scrollPosition = scrollY + 140;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const sec = sections[i];
         if (sec && sec.offsetTop <= scrollPosition) {
-          setActiveSection(navLinks[i].id);
+          setActiveSection(navItems[i].id);
           break;
         }
       }
@@ -148,20 +155,9 @@ const Navbar = () => {
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
           </div>
-          <span
-            style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 800,
-              fontSize: "1.1rem",
-              color: "var(--black)",
-              letterSpacing: "-0.02em",
-            }}
-          >
-            Najmus<span style={{ color: "var(--blue)" }}>.</span>
-          </span>
         </a>
 
-        {/* Desktop links with Active Scrollspy state + Theme Toggle */}
+        {/* Desktop links + Language Switcher + Theme Toggle */}
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <ul
             style={{
@@ -172,12 +168,12 @@ const Navbar = () => {
             }}
             className="desktop-nav"
           >
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.id;
+            {navItems.map((item) => {
+              const isActive = activeSection === item.id;
               return (
-                <li key={link.name}>
+                <li key={item.key}>
                   <a
-                    href={link.href}
+                    href={item.href}
                     style={{
                       fontFamily: "var(--font-mono)",
                       fontSize: "0.78rem",
@@ -208,12 +204,17 @@ const Navbar = () => {
                       }
                     }}
                   >
-                    {link.name}
+                    {t(item.key, item.name)}
                   </a>
                 </li>
               );
             })}
           </ul>
+
+          {/* Desktop Language Switcher */}
+          <div className="desktop-lang-switcher">
+            <LanguageSwitcher />
+          </div>
 
           {/* Theme Toggle Button (Desktop) */}
           <button
@@ -240,12 +241,14 @@ const Navbar = () => {
             }}
           >
             {theme === "dark" ? <FiSun size={15} /> : <FiMoon size={15} />}
-            <span>{theme === "dark" ? "Light" : "Dark"}</span>
+            <span>{theme === "dark" ? t("theme_light", "LIGHT") : t("theme_dark", "DARK")}</span>
           </button>
         </div>
 
-        {/* Mobile controls (Theme toggle + hamburger) */}
+        {/* Mobile controls (Language + Theme + Hamburger) */}
         <div className="mobile-controls" style={{ display: "none", alignItems: "center", gap: "8px" }}>
+          <LanguageSwitcher />
+
           <button
             onClick={toggleTheme}
             aria-label={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
@@ -324,12 +327,12 @@ const Navbar = () => {
             if (e.target === e.currentTarget) setIsOpen(false);
           }}
         >
-          {navLinks.map((link, i) => {
-            const isActive = activeSection === link.id;
+          {navItems.map((item, i) => {
+            const isActive = activeSection === item.id;
             return (
               <a
-                key={link.name}
-                href={link.href}
+                key={item.key}
+                href={item.href}
                 onClick={() => setIsOpen(false)}
                 style={{
                   fontFamily: "var(--font-display)",
@@ -339,7 +342,7 @@ const Navbar = () => {
                   textDecoration: "none",
                   padding: "0.6rem 0",
                   borderBottom:
-                    i < navLinks.length - 1 ? "1.5px solid #e5e5e5" : "none",
+                    i < navItems.length - 1 ? "1.5px solid #e5e5e5" : "none",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-between",
@@ -356,7 +359,7 @@ const Navbar = () => {
                   >
                     0{i + 1}
                   </span>
-                  {link.name}
+                  {t(item.key, item.name)}
                 </div>
                 {isActive && (
                   <span
@@ -371,7 +374,7 @@ const Navbar = () => {
                       textTransform: "uppercase",
                     }}
                   >
-                    Active
+                    {t("active", "ACTIVE")}
                   </span>
                 )}
               </a>
@@ -399,7 +402,7 @@ const Navbar = () => {
           >
             <span style={{ display: "flex", alignItems: "center", gap: "8px" }}>
               {theme === "dark" ? <FiSun size={16} /> : <FiMoon size={16} />}
-              Theme: {theme === "dark" ? "Dark Mode" : "Light Mode"}
+              {t("switch_theme", "Theme")}: {theme === "dark" ? t("theme_dark", "DARK") : t("theme_light", "LIGHT")}
             </span>
             <span
               style={{
@@ -411,7 +414,7 @@ const Navbar = () => {
                 fontWeight: 800,
               }}
             >
-              Toggle
+              {t("toggle", "Toggle")}
             </span>
           </button>
 
@@ -439,7 +442,7 @@ const Navbar = () => {
                 justifyContent: "center",
               }}
             >
-              ↓ Resume
+              {t("resume_short", "↓ Resume")}
             </a>
             <a
               href="#contact"
@@ -453,7 +456,7 @@ const Navbar = () => {
                 justifyContent: "center",
               }}
             >
-              Contact →
+              {t("contact_short", "Contact →")}
             </a>
           </div>
         </div>
@@ -462,11 +465,13 @@ const Navbar = () => {
       <style>{`
         @media (min-width: 768px) {
           .desktop-nav { display: flex !important; }
+          .desktop-lang-switcher { display: block !important; }
           .desktop-theme-toggle { display: inline-flex !important; }
           .mobile-controls { display: none !important; }
         }
         @media (max-width: 767px) {
           .desktop-nav { display: none !important; }
+          .desktop-lang-switcher { display: none !important; }
           .desktop-theme-toggle { display: none !important; }
           .mobile-controls { display: flex !important; }
         }

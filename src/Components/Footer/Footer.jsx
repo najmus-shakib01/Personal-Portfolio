@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import {
   FaArrowUp,
   FaCode,
@@ -21,13 +22,13 @@ const codingProfiles = [
 ]
 
 const quickLinks = [
-  { name: 'Home', href: '#home' },
-  { name: 'About', href: '#about' },
-  { name: 'Education', href: '#education' },
-  { name: 'Certificate', href: '#certificate' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Contact', href: '#contact' },
+  { key: 'home', name: 'Home', href: '#home' },
+  { key: 'about', name: 'About', href: '#about' },
+  { key: 'education', name: 'Education', href: '#education' },
+  { key: 'certificate', name: 'Certificate', href: '#certificate' },
+  { key: 'skills', name: 'Skills', href: '#skills' },
+  { key: 'projects', name: 'Projects', href: '#projects' },
+  { key: 'contact', name: 'Contact', href: '#contact' },
 ]
 
 const socials = [
@@ -40,6 +41,8 @@ const socials = [
 ]
 
 const Footer = () => {
+  const { t } = useTranslation('footer')
+  const { t: tNav } = useTranslation('navbar')
   const [showTopBtn, setShowTopBtn] = useState(false)
   const year = new Date().getFullYear()
 
@@ -89,7 +92,7 @@ const Footer = () => {
                 marginBottom: '1rem',
               }}
             >
-              Najmus<span style={{ color: 'var(--accent)' }}>.</span>
+              Najmus Shakib<span style={{ color: 'var(--accent)' }}>.</span>
             </a>
             <p
               style={{
@@ -100,8 +103,7 @@ const Footer = () => {
                 maxWidth: '280px',
               }}
             >
-              Full Stack Developer building modern web experiences with React &
-              Django.
+              {t('bio', 'Full Stack Developer building modern web experiences with React & Django.')}
             </p>
 
             {/* Social icons */}
@@ -156,7 +158,7 @@ const Footer = () => {
                 gap: '8px',
               }}
             >
-              <FaCode size={12} /> Coding Profiles
+              <FaCode size={12} /> {t('title_coding_profiles', 'Coding Profiles')}
             </h3>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {codingProfiles.map(link => (
@@ -199,11 +201,11 @@ const Footer = () => {
                 marginBottom: '1.25rem',
               }}
             >
-              Quick Links
+              {t('title_quick_links', 'Quick Links')}
             </h3>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {quickLinks.map(link => (
-                <li key={link.name}>
+                <li key={link.key}>
                   <a
                     href={link.href}
                     style={{
@@ -220,7 +222,7 @@ const Footer = () => {
                     onMouseLeave={e => e.currentTarget.style.color = '#ccc'}
                   >
                     <span style={{ color: 'var(--blue)', fontSize: '0.6rem' }}>▶</span>
-                    {link.name}
+                    {tNav(link.key, link.name)}
                   </a>
                 </li>
               ))}
@@ -247,7 +249,7 @@ const Footer = () => {
               color: '#888',
             }}
           >
-            © {year} Syed Najmus Shakib. All rights reserved.
+            {t('copyright_prefix', `© ${year} Syed Najmus Shakib. All rights reserved.`)}
           </p>
           <p
             style={{
@@ -256,7 +258,7 @@ const Footer = () => {
               color: '#555',
             }}
           >
-            Built with React + Vite + Tailwind + Django REST Framework
+            {t('built_with', 'Built with React + Vite + Tailwind + Django REST Framework')}
           </p>
         </div>
       </div>
@@ -264,7 +266,8 @@ const Footer = () => {
       {/* Scroll to top button (UX: only visible when scrolled down) */}
       <button
         onClick={scrollTop}
-        aria-label="Scroll to top"
+        aria-label={t('scroll_top', 'Scroll to top')}
+        title={t('scroll_top', 'Scroll to top')}
         style={{
           position: 'fixed',
           bottom: '2rem',
@@ -308,4 +311,4 @@ const Footer = () => {
   )
 }
 
-export default Footer;
+export default Footer

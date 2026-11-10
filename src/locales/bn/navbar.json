@@ -1,0 +1,16 @@
+{
+  "home": "হোম",
+  "about": "পরিচিতি",
+  "education": "শিক্ষা",
+  "certificate": "সনদপত্র",
+  "skills": "দক্ষতা",
+  "projects": "প্রজেক্টস",
+  "contact": "যোগাযোগ",
+  "active": "সক্রিয়",
+  "theme_dark": "ডার্ক",
+  "theme_light": "লাইট",
+  "switch_theme": "থিম",
+  "toggle": "পরিবর্তন",
+  "resume_short": "↓ জীবনবৃত্তান্ত",
+  "contact_short": "যোগাযোগ →"
+}

@@ -1,0 +1,16 @@
+{
+  "status_available": "কাজের জন্য প্রস্তুত",
+  "greeting": "হ্যালো, আমি",
+  "name": "নাজমুস সাকিব",
+  "subheading": "Python, Django এবং React দিয়ে দ্রুতগতির ও স্কেলেবল ওয়েব অ্যাপ্লিকেশন তৈরিতে নিবেদিত ফুল-স্ট্যাক ডেভেলপার। ক্লিন আর্কিটেকচার ও আকর্ষণীয় ইউজার এক্সপেরিয়েন্স তৈরিই আমার লক্ষ্য।",
+  "btn_resume": "↓ জীবনবৃত্তান্ত",
+  "btn_contact": "যোগাযোগ করুন →",
+  "stat_projects_val": "২০+",
+  "stat_projects_label": "প্রজেক্ট সম্পন্ন",
+  "stat_experience_val": "৪+",
+  "stat_experience_label": "বছরের অভিজ্ঞতা",
+  "stat_tech_val": "১৫+",
+  "stat_tech_label": "প্রযুক্তি ও টুলস",
+  "badge_ready": "★ ২০২৬ রেডি",
+  "badge_role": "ফুল স্ট্যাক ডেভেলপার"
+}

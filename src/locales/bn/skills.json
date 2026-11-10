@@ -1,0 +1,20 @@
+{
+  "tag": "টেক স্ট্যাক",
+  "title_prefix": "আমার",
+  "title_highlight": "দক্ষতা",
+  "subtitle": "আধুনিক ও স্কেলেবল ওয়েব অ্যাপ্লিকেশন তৈরিতে ব্যবহৃত প্রযুক্তি, ফ্রেমওয়ার্ক এবং টুলস",
+  "search_placeholder": "দক্ষতা অনুসন্ধান করুন... (যেমন: React, Python, Django)",
+  "category_all": "সবগুলো",
+  "category_frontend": "ফ্রন্টএন্ড",
+  "category_backend": "ব্যাকএন্ড",
+  "category_programming": "প্রোগ্রামিং",
+  "category_tools": "টুলস",
+  "empty_title": "কোনো ফলাফল পাওয়া যায়নি:",
+  "empty_desc": "অন্য কোনো কি-ওয়ার্ড দিয়ে খুঁজুন অথবা ফিল্টার রিসেট করুন।",
+  "btn_reset": "ফিল্টার রিসেট",
+  "skill_names": {
+    "Payment Gateway": "পেমেন্ট গেটওয়ে",
+    "Data Structures": "ডেটা স্ট্রাকচার",
+    "Algorithms": "অ্যালগরিদম"
+  }
+}
