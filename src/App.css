@@ -113,3 +113,62 @@ section {
   transform: translate(-2px, -2px);
   box-shadow: var(--shadow-lg);
 }
+
+/* --- 2026 UX & Mobile Responsiveness Enhancements --- */
+
+/* Responsive Section Spacing to prevent mobile scroll fatigue */
+section:not(#home) {
+  padding-top: clamp(3.25rem, 6vw, 6rem) !important;
+  padding-bottom: clamp(3.25rem, 6vw, 6rem) !important;
+}
+
+/* Mobile-optimized Section Headers */
+@media (max-width: 768px) {
+  .section-header {
+    margin-bottom: 2.25rem !important;
+  }
+
+  .section-header .section-desc {
+    font-size: 0.88rem !important;
+    margin-top: 0.5rem !important;
+    padding: 0 0.5rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.85rem, 7vw, 2.5rem) !important;
+  }
+
+  /* Thumb-friendly CTA touch target */
+  .btn-primary,
+  .btn-secondary {
+    min-height: 44px;
+    padding: 10px 22px;
+  }
+}
+
+/* Tactile Neo-Brutalist Press-Down Effect for Touch/Click */
+.btn-primary:active,
+.btn-secondary:active,
+button:active,
+a.card:active,
+.card:active {
+  transform: translate(2px, 2px) !important;
+  box-shadow: 1px 1px 0px var(--black) !important;
+}
+
+/* Prevent sticky hover effects on mobile devices without mice */
+@media (hover: none) {
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .card:hover {
+    transform: none;
+    box-shadow: var(--shadow);
+  }
+
+  .btn-primary:active,
+  .btn-secondary:active,
+  .card:active {
+    transform: translate(2px, 2px) !important;
+    box-shadow: 1px 1px 0px var(--black) !important;
+  }
+}

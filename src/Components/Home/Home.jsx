@@ -195,15 +195,17 @@ const Home = () => {
           className="home-img-side"
         >
           <div style={{ position: 'relative', width: 'min(320px, 80vw)' }}>
-            {/* Offset box (decorative) */}
+            {/* Offset box (decorative) with responsive class */}
             <div
               aria-hidden
+              className="hero-offset-box"
               style={{
                 position: 'absolute',
                 inset: '12px -12px -12px 12px',
                 border: 'var(--border)',
                 background: 'var(--accent)',
                 zIndex: 0,
+                transition: 'inset 0.2s ease',
               }}
             />
             {/* Main image frame */}
@@ -214,6 +216,8 @@ const Home = () => {
                 border: 'var(--border)',
                 overflow: 'hidden',
                 aspectRatio: '1 / 1',
+                background: 'var(--white)',
+                boxShadow: 'var(--shadow)',
               }}
             >
               <img
@@ -224,27 +228,55 @@ const Home = () => {
                   height: '100%',
                   objectFit: 'cover',
                   display: 'block',
-                  filter: 'grayscale(15%)',
+                  filter: 'contrast(106%) brightness(102%) saturate(104%)',
+                  transition: 'filter 0.3s ease',
                 }}
                 loading="eager"
               />
             </div>
+
+            {/* Top-right 2026 status badge */}
+            <div
+              style={{
+                position: 'absolute',
+                top: '-12px',
+                right: '-8px',
+                zIndex: 2,
+                background: 'var(--accent)',
+                color: 'var(--black)',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.65rem',
+                fontWeight: 800,
+                textTransform: 'uppercase',
+                letterSpacing: '0.06em',
+                padding: '4px 10px',
+                border: 'var(--border)',
+                boxShadow: '2px 2px 0px var(--black)',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '4px',
+              }}
+            >
+              <span>★</span> 2026 Ready
+            </div>
+
             {/* Corner label */}
             <div
               style={{
                 position: 'absolute',
-                bottom: '-24px',
+                bottom: '-16px',
                 left: '-8px',
                 zIndex: 2,
                 background: 'var(--blue)',
                 color: 'var(--white)',
                 fontFamily: 'var(--font-mono)',
-                fontSize: '0.65rem',
+                fontSize: '0.68rem',
                 fontWeight: 700,
                 textTransform: 'uppercase',
                 letterSpacing: '0.08em',
-                padding: '4px 10px',
+                padding: '5px 12px',
                 border: 'var(--border)',
+                boxShadow: '2px 2px 0px var(--black)',
               }}
             >
               Full Stack Dev
@@ -254,6 +286,15 @@ const Home = () => {
       </div>
 
       <style>{`
+        @media (max-width: 767px) {
+          .home-grid {
+            gap: 2.25rem !important;
+            padding: 2rem 1.25rem !important;
+          }
+          .hero-offset-box {
+            inset: 8px -8px -8px 8px !important;
+          }
+        }
         @media (min-width: 768px) {
           .home-grid {
             grid-template-columns: 1.2fr 0.8fr !important;

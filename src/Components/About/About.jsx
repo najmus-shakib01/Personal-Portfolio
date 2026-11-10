@@ -96,19 +96,48 @@ const About = () => {
                 border: 'var(--border)',
                 boxShadow: 'var(--shadow-lg)',
                 background: '#e0f2fe',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '2rem',
-                aspectRatio: '4/3',
                 overflow: 'hidden',
               }}
             >
-              <img
-                src={aboutImg}
-                alt="About"
-                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-              />
+              {/* Retro brutalist terminal window bar */}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '6px 12px',
+                  background: 'var(--black)',
+                  color: 'var(--white)',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.65rem',
+                  fontWeight: 700,
+                  letterSpacing: '0.05em',
+                }}
+              >
+                <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ef4444', display: 'inline-block' }} />
+                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f59e0b', display: 'inline-block' }} />
+                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981', display: 'inline-block' }} />
+                </div>
+                <span>~/developer/workspace</span>
+                <span style={{ opacity: 0.6 }}>v2026</span>
+              </div>
+
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '1.5rem',
+                  aspectRatio: '4/3',
+                }}
+              >
+                <img
+                  src={aboutImg}
+                  alt="About"
+                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                />
+              </div>
             </div>
 
             {/* Quick facts */}
