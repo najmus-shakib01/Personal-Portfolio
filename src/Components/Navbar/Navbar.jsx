@@ -216,7 +216,7 @@ const Navbar = () => {
             <LanguageSwitcher />
           </div>
 
-          {/* Theme Toggle Button (Desktop) */}
+          {/* Theme Toggle Button (Desktop - Icon Only) */}
           <button
             onClick={toggleTheme}
             aria-label={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
@@ -227,21 +227,17 @@ const Navbar = () => {
               color: theme === "dark" ? "#0a0a0a" : "var(--black)",
               border: "var(--border)",
               boxShadow: "2px 2px 0 var(--black)",
-              padding: "6px 11px",
+              width: "32px",
+              height: "32px",
+              padding: 0,
               cursor: "pointer",
               display: "inline-flex",
               alignItems: "center",
-              gap: "6px",
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.74rem",
-              fontWeight: 800,
-              textTransform: "uppercase",
-              letterSpacing: "0.06em",
+              justifyContent: "center",
               transition: "all 0.15s ease",
             }}
           >
-            {theme === "dark" ? <FiSun size={15} /> : <FiMoon size={15} />}
-            <span>{theme === "dark" ? t("theme_light", "LIGHT") : t("theme_dark", "DARK")}</span>
+            {theme === "dark" ? <FiSun size={17} /> : <FiMoon size={17} />}
           </button>
         </div>
 
@@ -257,9 +253,11 @@ const Navbar = () => {
               background: theme === "dark" ? "var(--accent)" : "var(--white)",
               color: theme === "dark" ? "#0a0a0a" : "var(--black)",
               border: "var(--border)",
-              padding: "6px 9px",
+              width: "32px",
+              height: "32px",
+              padding: 0,
               cursor: "pointer",
-              boxShadow: "var(--shadow)",
+              boxShadow: "2px 2px 0 var(--black)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -276,16 +274,18 @@ const Navbar = () => {
               background: isOpen ? "var(--accent)" : "var(--white)",
               color: isOpen ? "#0a0a0a" : "var(--black)",
               border: "var(--border)",
-              padding: "6px",
+              width: "32px",
+              height: "32px",
+              padding: 0,
               cursor: "pointer",
-              boxShadow: "var(--shadow)",
+              boxShadow: "2px 2px 0 var(--black)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               transition: "all 0.12s ease",
             }}
           >
-            {isOpen ? <FiX size={22} /> : <FiMenu size={22} />}
+            {isOpen ? <FiX size={20} /> : <FiMenu size={20} />}
           </button>
         </div>
       </nav>

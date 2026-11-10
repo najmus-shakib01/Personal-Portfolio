@@ -1,18 +1,10 @@
-import { useState, useRef, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { FiChevronDown, FiCheck } from 'react-icons/fi'
 
 // Pixel-perfect SVG Flags for 100% cross-platform consistency (Windows/Mac/Mobile)
-const FlagBD = () => (
-  <svg width="20" height="14" viewBox="0 0 20 14" style={{ borderRadius: '2px', border: '1px solid rgba(0,0,0,0.15)', flexShrink: 0 }}>
-    <rect width="20" height="14" fill="#006a4e" />
-    <circle cx="9" cy="7" r="4.2" fill="#f42a41" />
-  </svg>
-)
-
 const FlagUS = () => (
-  <svg width="20" height="14" viewBox="0 0 20 14" style={{ borderRadius: '2px', border: '1px solid rgba(0,0,0,0.15)', flexShrink: 0 }}>
+  <svg width="20" height="14" viewBox="0 0 20 14" style={{ borderRadius: '1.5px', border: '1px solid rgba(0,0,0,0.18)', display: 'block', flexShrink: 0 }}>
     <rect width="20" height="14" fill="#b22234" />
     <path d="M0,1.08h20v1.08h-20zM0,3.23h20v1.08h-20zM0,5.38h20v1.08h-20zM0,7.54h20v1.08h-20zM0,9.69h20v1.08h-20zM0,11.85h20v1.08h-20z" fill="#fff" />
     <rect width="8" height="7.5" fill="#3c3b6e" />
@@ -27,17 +19,18 @@ const FlagUS = () => (
   </svg>
 )
 
-const languages = [
-  { code: 'bn', label: 'বাংলা', flag: <FlagBD /> },
-  { code: 'en', label: 'Eng', flag: <FlagUS /> },
-]
+const FlagBD = () => (
+  <svg width="20" height="14" viewBox="0 0 20 14" style={{ borderRadius: '1.5px', border: '1px solid rgba(0,0,0,0.18)', display: 'block', flexShrink: 0 }}>
+    <rect width="20" height="14" fill="#006a4e" />
+    <circle cx="9" cy="7" r="4.2" fill="#f42a41" />
+  </svg>
+)
 
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
-  const [isOpen, setIsOpen] = useState(false)
-  const dropdownRef = useRef(null)
+  const isBn = i18n.language === 'bn'
 
   // Sync language and html lang attribute with URL path
   useEffect(() => {
@@ -54,34 +47,12 @@ const LanguageSwitcher = () => {
     }
   }, [location.pathname, i18n])
 
-  // Close dropdown on click outside or Escape
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setIsOpen(false)
-      }
-    }
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') setIsOpen(false)
-    }
-    document.addEventListener('mousedown', handleClickOutside)
-    document.addEventListener('keydown', handleKeyDown)
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-      document.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [])
-
-  const currentLang = languages.find(l => l.code === (i18n.language === 'bn' ? 'bn' : 'en')) || languages[1]
-
   const handleSelect = (langCode) => {
-    setIsOpen(false)
     if (langCode === i18n.language) return
 
     i18n.changeLanguage(langCode)
     localStorage.setItem('lang', langCode)
 
-    // Route handling: 'bn' -> '/bn', 'en' -> '/'
     const hash = location.hash || ''
     if (langCode === 'bn') {
       navigate(`/bn${hash}`, { replace: true })
@@ -91,100 +62,76 @@ const LanguageSwitcher = () => {
   }
 
   return (
-    <div ref={dropdownRef} style={{ position: 'relative', display: 'inline-block' }}>
-      {/* Trigger Button */}
+    <div
+      role="group"
+      aria-label="Language selection"
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        background: 'var(--white)',
+        border: 'var(--border)',
+        boxShadow: '2px 2px 0 var(--black)',
+        padding: '3px',
+        gap: '3px',
+      }}
+    >
+      {/* English Toggle Button (Left) */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label="Select Language"
-        aria-expanded={isOpen}
+        onClick={() => handleSelect('en')}
+        aria-label="Switch to English"
+        title="English"
         style={{
-          display: 'inline-flex',
+          display: 'flex',
           alignItems: 'center',
-          gap: '7px',
-          padding: '6px 11px',
-          background: 'var(--white)',
-          color: 'var(--black)',
-          border: 'var(--border)',
-          boxShadow: '2px 2px 0 var(--black)',
+          justifyContent: 'center',
+          padding: '5px 8px',
+          border: !isBn ? '1.5px solid var(--black)' : '1.5px solid transparent',
+          background: !isBn ? 'var(--accent)' : 'transparent',
+          boxShadow: !isBn ? '1px 1px 0 var(--black)' : 'none',
           cursor: 'pointer',
-          fontFamily: 'var(--font-mono)',
-          fontSize: '0.78rem',
-          fontWeight: 700,
-          transition: 'all 0.12s ease',
+          transition: 'all 0.15s ease',
+          borderRadius: '0',
+          opacity: !isBn ? 1 : 0.45,
+        }}
+        onMouseEnter={e => {
+          if (isBn) e.currentTarget.style.opacity = '0.85'
+        }}
+        onMouseLeave={e => {
+          if (isBn) e.currentTarget.style.opacity = '0.45'
         }}
       >
-        {currentLang.flag}
-        <span>{currentLang.label}</span>
-        <FiChevronDown
-          size={14}
-          style={{
-            transform: isOpen ? 'rotate(180deg)' : 'none',
-            transition: 'transform 0.15s ease',
-            opacity: 0.8,
-          }}
-        />
+        <FlagUS />
       </button>
 
-      {/* Dropdown Menu */}
-      {isOpen && (
-        <div
-          style={{
-            position: 'absolute',
-            top: 'calc(100% + 6px)',
-            right: 0,
-            zIndex: 150,
-            background: 'var(--white)',
-            border: 'var(--border)',
-            boxShadow: 'var(--shadow-lg)',
-            minWidth: '135px',
-            overflow: 'hidden',
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-        >
-          {languages.map((lang) => {
-            const isSelected = currentLang.code === lang.code
-            return (
-              <button
-                key={lang.code}
-                onClick={() => handleSelect(lang.code)}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  padding: '9px 12px',
-                  background: isSelected ? 'var(--cream)' : 'transparent',
-                  color: 'var(--black)',
-                  border: 'none',
-                  borderBottom: '1px solid var(--border)',
-                  cursor: 'pointer',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.8rem',
-                  fontWeight: isSelected ? 800 : 600,
-                  transition: 'background 0.12s ease',
-                  textAlign: 'left',
-                  width: '100%',
-                }}
-                onMouseEnter={(e) => {
-                  if (!isSelected) e.currentTarget.style.background = 'var(--accent)'
-                }}
-                onMouseLeave={(e) => {
-                  if (!isSelected) e.currentTarget.style.background = 'transparent'
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  {lang.flag}
-                  <span>{lang.label}</span>
-                </div>
-                {isSelected && <FiCheck size={14} color="var(--blue)" />}
-              </button>
-            )
-          })}
-        </div>
-      )}
+      {/* Bengali Toggle Button (Right) */}
+      <button
+        onClick={() => handleSelect('bn')}
+        aria-label="Switch to Bengali"
+        title="বাংলা"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '5px 8px',
+          border: isBn ? '1.5px solid var(--black)' : '1.5px solid transparent',
+          background: isBn ? 'var(--accent)' : 'transparent',
+          boxShadow: isBn ? '1px 1px 0 var(--black)' : 'none',
+          cursor: 'pointer',
+          transition: 'all 0.15s ease',
+          borderRadius: '0',
+          opacity: isBn ? 1 : 0.45,
+        }}
+        onMouseEnter={e => {
+          if (!isBn) e.currentTarget.style.opacity = '0.85'
+        }}
+        onMouseLeave={e => {
+          if (!isBn) e.currentTarget.style.opacity = '0.45'
+        }}
+      >
+        <FlagBD />
+      </button>
     </div>
   )
 }
 
 export default LanguageSwitcher
-
