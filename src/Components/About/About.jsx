@@ -198,6 +198,7 @@ const About = () => {
                 {/* Number watermark */}
                 <span
                   aria-hidden
+                  className="journey-watermark"
                   style={{
                     position: 'absolute',
                     top: '-12px',

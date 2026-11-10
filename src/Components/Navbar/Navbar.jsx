@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FiMenu, FiX } from "react-icons/fi";
+import { FiMenu, FiX, FiSun, FiMoon } from "react-icons/fi";
 
 const navLinks = [
   { name: "Home", href: "#home", id: "home" },
@@ -16,6 +16,37 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Industry-Standard Persistent Theme State (defaults to light mode)
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("theme") === "dark" ? "dark" : "light";
+    }
+    return "light";
+  });
+
+  // Sync theme with DOM on mount
+  useEffect(() => {
+    const saved = localStorage.getItem("theme");
+    if (saved === "dark") {
+      document.documentElement.classList.add("dark");
+      setTheme("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      setTheme("light");
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const nextTheme = theme === "dark" ? "light" : "dark";
+    setTheme(nextTheme);
+    localStorage.setItem("theme", nextTheme);
+    if (nextTheme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -130,77 +161,130 @@ const Navbar = () => {
           </span>
         </a>
 
-        {/* Desktop links with Active Scrollspy state */}
-        <ul
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "6px",
-            listStyle: "none",
-          }}
-          className="desktop-nav"
-        >
-          {navLinks.map((link) => {
-            const isActive = activeSection === link.id;
-            return (
-              <li key={link.name}>
-                <a
-                  href={link.href}
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "0.78rem",
-                    fontWeight: 700,
-                    textTransform: "uppercase",
-                    letterSpacing: "0.06em",
-                    color: "var(--black)",
-                    textDecoration: "none",
-                    padding: "6px 12px",
-                    border: isActive ? "var(--border)" : "1.5px solid transparent",
-                    background: isActive ? "var(--accent)" : "transparent",
-                    boxShadow: isActive ? "2px 2px 0 var(--black)" : "none",
-                    transition: "all 0.15s ease",
-                    display: "block",
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!isActive) {
-                      e.currentTarget.style.border = "var(--border)";
-                      e.currentTarget.style.background = "var(--white)";
-                      e.currentTarget.style.boxShadow = "2px 2px 0 var(--black)";
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!isActive) {
-                      e.currentTarget.style.border = "1.5px solid transparent";
-                      e.currentTarget.style.background = "transparent";
-                      e.currentTarget.style.boxShadow = "none";
-                    }
-                  }}
-                >
-                  {link.name}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
+        {/* Desktop links with Active Scrollspy state + Theme Toggle */}
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <ul
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+              listStyle: "none",
+            }}
+            className="desktop-nav"
+          >
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.id;
+              return (
+                <li key={link.name}>
+                  <a
+                    href={link.href}
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.78rem",
+                      fontWeight: 700,
+                      textTransform: "uppercase",
+                      letterSpacing: "0.06em",
+                      color: "var(--black)",
+                      textDecoration: "none",
+                      padding: "6px 12px",
+                      border: isActive ? "var(--border)" : "1.5px solid transparent",
+                      background: isActive ? "var(--accent)" : "transparent",
+                      boxShadow: isActive ? "2px 2px 0 var(--black)" : "none",
+                      transition: "all 0.15s ease",
+                      display: "block",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isActive) {
+                        e.currentTarget.style.border = "var(--border)";
+                        e.currentTarget.style.background = "var(--white)";
+                        e.currentTarget.style.boxShadow = "2px 2px 0 var(--black)";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive) {
+                        e.currentTarget.style.border = "1.5px solid transparent";
+                        e.currentTarget.style.background = "transparent";
+                        e.currentTarget.style.boxShadow = "none";
+                      }
+                    }}
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
 
-        {/* Mobile toggle */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label={isOpen ? "Close menu" : "Open menu"}
-          style={{
-            display: "none",
-            background: isOpen ? "var(--accent)" : "var(--white)",
-            border: "var(--border)",
-            padding: "6px",
-            cursor: "pointer",
-            boxShadow: "var(--shadow)",
-            color: "var(--black)",
-            transition: "all 0.12s ease",
-          }}
-          className="mobile-toggle"
-        >
-          {isOpen ? <FiX size={22} /> : <FiMenu size={22} />}
-        </button>
+          {/* Theme Toggle Button (Desktop) */}
+          <button
+            onClick={toggleTheme}
+            aria-label={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            className="desktop-theme-toggle"
+            style={{
+              background: theme === "dark" ? "var(--accent)" : "var(--white)",
+              color: theme === "dark" ? "#0a0a0a" : "var(--black)",
+              border: "var(--border)",
+              boxShadow: "2px 2px 0 var(--black)",
+              padding: "6px 11px",
+              cursor: "pointer",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "6px",
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.74rem",
+              fontWeight: 800,
+              textTransform: "uppercase",
+              letterSpacing: "0.06em",
+              transition: "all 0.15s ease",
+            }}
+          >
+            {theme === "dark" ? <FiSun size={15} /> : <FiMoon size={15} />}
+            <span>{theme === "dark" ? "Light" : "Dark"}</span>
+          </button>
+        </div>
+
+        {/* Mobile controls (Theme toggle + hamburger) */}
+        <div className="mobile-controls" style={{ display: "none", alignItems: "center", gap: "8px" }}>
+          <button
+            onClick={toggleTheme}
+            aria-label={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            style={{
+              background: theme === "dark" ? "var(--accent)" : "var(--white)",
+              color: theme === "dark" ? "#0a0a0a" : "var(--black)",
+              border: "var(--border)",
+              padding: "6px 9px",
+              cursor: "pointer",
+              boxShadow: "var(--shadow)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              transition: "all 0.12s ease",
+            }}
+          >
+            {theme === "dark" ? <FiSun size={18} /> : <FiMoon size={18} />}
+          </button>
+
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            style={{
+              background: isOpen ? "var(--accent)" : "var(--white)",
+              color: isOpen ? "#0a0a0a" : "var(--black)",
+              border: "var(--border)",
+              padding: "6px",
+              cursor: "pointer",
+              boxShadow: "var(--shadow)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              transition: "all 0.12s ease",
+            }}
+          >
+            {isOpen ? <FiX size={22} /> : <FiMenu size={22} />}
+          </button>
+        </div>
       </nav>
 
       {/* Reading / Scroll progress bar indicator */}
@@ -221,6 +305,7 @@ const Navbar = () => {
       {/* Mobile drawer */}
       {isOpen && (
         <div
+          className="mobile-drawer"
           style={{
             position: "fixed",
             inset: "64px 0 0 0",
@@ -230,8 +315,10 @@ const Navbar = () => {
             zIndex: 99,
             display: "flex",
             flexDirection: "column",
-            padding: "2rem 1.5rem",
+            padding: "1.75rem 1.5rem 3.5rem",
             gap: "0.5rem",
+            overflowY: "auto",
+            WebkitOverflowScrolling: "touch",
           }}
           onClick={(e) => {
             if (e.target === e.currentTarget) setIsOpen(false);
@@ -247,10 +334,10 @@ const Navbar = () => {
                 style={{
                   fontFamily: "var(--font-display)",
                   fontWeight: 800,
-                  fontSize: "clamp(1.5rem, 6vw, 2rem)",
+                  fontSize: "clamp(1.35rem, 5.5vw, 1.85rem)",
                   color: isActive ? "var(--blue)" : "var(--black)",
                   textDecoration: "none",
-                  padding: "0.5rem 0",
+                  padding: "0.6rem 0",
                   borderBottom:
                     i < navLinks.length - 1 ? "1.5px solid #e5e5e5" : "none",
                   display: "flex",
@@ -278,7 +365,7 @@ const Navbar = () => {
                       fontSize: "0.68rem",
                       fontWeight: 700,
                       background: "var(--accent)",
-                      color: "var(--black)",
+                      color: "#0a0a0a",
                       border: "var(--border)",
                       padding: "2px 8px",
                       textTransform: "uppercase",
@@ -290,17 +377,98 @@ const Navbar = () => {
               </a>
             );
           })}
+
+          {/* Theme Switch Row inside Mobile Drawer */}
+          <button
+            onClick={toggleTheme}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              padding: "10px 14px",
+              background: "var(--white)",
+              border: "var(--border)",
+              boxShadow: "var(--shadow)",
+              color: "var(--black)",
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.8rem",
+              fontWeight: 700,
+              cursor: "pointer",
+              marginTop: "0.75rem",
+            }}
+          >
+            <span style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              {theme === "dark" ? <FiSun size={16} /> : <FiMoon size={16} />}
+              Theme: {theme === "dark" ? "Dark Mode" : "Light Mode"}
+            </span>
+            <span
+              style={{
+                background: "var(--accent)",
+                color: "#0a0a0a",
+                padding: "2px 8px",
+                fontSize: "0.7rem",
+                border: "1px solid var(--black)",
+                fontWeight: 800,
+              }}
+            >
+              Toggle
+            </span>
+          </button>
+
+          {/* Quick Mobile Drawer CTA Buttons */}
+          <div
+            style={{
+              display: "flex",
+              gap: "10px",
+              marginTop: "1.25rem",
+              paddingTop: "1rem",
+              borderTop: "2px solid var(--black)",
+            }}
+          >
+            <a
+              href="/resume.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsOpen(false)}
+              className="btn-primary"
+              style={{
+                flex: 1,
+                fontSize: "0.78rem",
+                padding: "10px",
+                textAlign: "center",
+                justifyContent: "center",
+              }}
+            >
+              ↓ Resume
+            </a>
+            <a
+              href="#contact"
+              onClick={() => setIsOpen(false)}
+              className="btn-secondary"
+              style={{
+                flex: 1,
+                fontSize: "0.78rem",
+                padding: "10px",
+                textAlign: "center",
+                justifyContent: "center",
+              }}
+            >
+              Contact →
+            </a>
+          </div>
         </div>
       )}
 
       <style>{`
         @media (min-width: 768px) {
           .desktop-nav { display: flex !important; }
-          .mobile-toggle { display: none !important; }
+          .desktop-theme-toggle { display: inline-flex !important; }
+          .mobile-controls { display: none !important; }
         }
         @media (max-width: 767px) {
           .desktop-nav { display: none !important; }
-          .mobile-toggle { display: flex !important; align-items: center; justify-content: center; }
+          .desktop-theme-toggle { display: none !important; }
+          .mobile-controls { display: flex !important; }
         }
       `}</style>
     </header>

@@ -36,6 +36,314 @@
   }
 }
 
+/* ========================================================
+   Ultra-Professional 2026 Dark Mode (Ergonomic Slate & Obsidian)
+   Designed for crystal-clear readability, elegant elevation & zero eye-strain
+   ======================================================== */
+html.dark {
+  --black: #f8fafc;
+  --white: #151c28;
+  --cream: #0b0f17;
+  --blue: #38bdf8;
+  --blue-dark: #0284c7;
+  --blue-light: #0c4a6e;
+  --accent: #facc15;
+  --accent-dark: #ca8a04;
+  --teal: #2dd4bf;
+  --border: 2px solid #2d3748;
+  --shadow: 4px 4px 0px #030712;
+  --shadow-lg: 6px 6px 0px #030712;
+  --shadow-blue: 4px 4px 0px #0284c7;
+  color-scheme: dark;
+}
+
+@media (max-width: 640px) {
+  html.dark {
+    --shadow: 3px 3px 0px #030712;
+    --shadow-lg: 4px 4px 0px #030712;
+    --shadow-blue: 3px 3px 0px #0284c7;
+  }
+}
+
+/* Velvety smooth clean dark background (no heavy noise grain) */
+html.dark body::before {
+  opacity: 0.06 !important;
+}
+
+/* Headings & Titles: 100% Bright, Crisp & Sharp */
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4,
+html.dark h5,
+html.dark h6,
+html.dark .section-title,
+html.dark strong,
+html.dark b {
+  color: #f8fafc !important;
+}
+
+/* Section Header Descriptions & Subtitles */
+html.dark .section-header .section-desc,
+html.dark .section-desc {
+  color: #94a3b8 !important;
+}
+
+/* Body text, descriptions & paragraphs: Crystal-clear High Contrast */
+html.dark p {
+  color: #cbd5e1 !important;
+}
+
+html.dark [style*="color: #444"],
+html.dark [style*="color:#444"],
+html.dark [style*="color: #555"],
+html.dark [style*="color:#555"],
+html.dark [style*="color: #666"],
+html.dark [style*="color:#666"] {
+  color: #cbd5e1 !important;
+}
+
+html.dark [style*="color: #888"],
+html.dark [style*="color:#888"] {
+  color: #94a3b8 !important;
+}
+
+/* Lighter, vibrant tone adaptations for dark mode readability */
+html.dark [style*="color: #7c3aed"],
+html.dark [style*="color:#7c3aed"] {
+  color: #a78bfa !important;
+}
+
+html.dark [style*="color: #059669"],
+html.dark [style*="color:#059669"] {
+  color: #34d399 !important;
+}
+
+html.dark [style*="color: #dc2626"],
+html.dark [style*="color:#dc2626"] {
+  color: #f87171 !important;
+}
+
+/* Badges with electric blue background require dark text for WCAG */
+html.dark [style*="background: var(--blue)"],
+html.dark [style*="background:var(--blue)"] {
+  color: #0b0f17 !important;
+}
+
+html.dark [style*="background: var(--blue)"] svg,
+html.dark [style*="background:var(--blue)"] svg {
+  color: #0b0f17 !important;
+}
+
+/* Cards & Containers: High Elevation & Subtle Hover Border */
+html.dark .card {
+  background: var(--white);
+  border: var(--border);
+  box-shadow: var(--shadow);
+}
+
+html.dark .card:hover {
+  border-color: #475569 !important;
+  box-shadow: var(--shadow-lg);
+}
+
+/* Card Watermarks (01, 02, 03): Subtle, non-intrusive */
+html.dark .card span[aria-hidden] {
+  color: rgba(255, 255, 255, 0.04) !important;
+}
+
+/* Yellow Tags & Highlights: Sharp Black Text for 100% Legibility */
+html.dark .tag,
+html.dark mark,
+html.dark [style*="background: var(--accent)"],
+html.dark [style*="background:var(--accent)"] {
+  background: var(--accent) !important;
+  color: #0a0a0a !important;
+  border-color: #0a0a0a !important;
+}
+
+/* Buttons in Dark Mode: Clean, High-impact Professional Aesthetics */
+html.dark .btn-primary {
+  background: #38bdf8 !important;
+  color: #0b0f17 !important;
+  border: 2px solid #38bdf8 !important;
+  box-shadow: 4px 4px 0px #030712 !important;
+  font-weight: 800 !important;
+}
+
+html.dark .btn-primary:hover {
+  background: #7dd3fc !important;
+  border-color: #7dd3fc !important;
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 6px 6px 0px #030712 !important;
+}
+
+html.dark .btn-secondary {
+  background: #151c28 !important;
+  color: #f8fafc !important;
+  border: 2px solid #334155 !important;
+  box-shadow: 4px 4px 0px #030712 !important;
+}
+
+html.dark .btn-secondary:hover {
+  background: var(--accent) !important;
+  color: #0a0a0a !important;
+  border-color: var(--accent) !important;
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 6px 6px 0px #030712 !important;
+}
+
+/* Inputs, Textareas & Forms */
+html.dark input,
+html.dark textarea,
+html.dark select {
+  background-color: #0f141c !important;
+  color: #f8fafc !important;
+  border: 2px solid #334155 !important;
+}
+
+html.dark input:focus,
+html.dark textarea:focus {
+  border-color: #38bdf8 !important;
+  outline: none !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #64748b !important;
+}
+
+/* Navbar in Dark Mode */
+html.dark header {
+  background: rgba(11, 15, 23, 0.95) !important;
+  backdrop-filter: blur(10px) !important;
+  border-bottom-color: #1e293b !important;
+}
+
+html.dark .mobile-drawer {
+  background: rgba(11, 15, 23, 0.98) !important;
+  border-top-color: #2d3748 !important;
+}
+
+html.dark .mobile-drawer a {
+  border-bottom-color: #1e293b !important;
+  color: #f8fafc !important;
+}
+
+/* About Section Window & Quick Facts Table in Dark Mode */
+html.dark [style*="background: #e0f2fe"],
+html.dark [style*="background:#e0f2fe"] {
+  background: #0f172a !important;
+  border-color: #2d3748 !important;
+}
+
+html.dark [style*="border-bottom: 1px solid #e5e5e5"],
+html.dark [style*="borderBottom: 1px solid #e5e5e5"],
+html.dark [style*="border-bottom:1px solid #e5e5e5"] {
+  border-bottom-color: #1e293b !important;
+}
+
+/* Graduated status badge in Education */
+html.dark [style*="background: #dcfce7"],
+html.dark [style*="background:#dcfce7"] {
+  background: rgba(34, 197, 94, 0.12) !important;
+  color: #4ade80 !important;
+  border-color: #16a34a !important;
+}
+
+/* Availability Note in Contact */
+.contact-availability-note {
+  background: #fefce8;
+  color: #0a0a0a;
+}
+.contact-availability-note p {
+  color: #0a0a0a !important;
+}
+.contact-availability-note strong {
+  color: #0a0a0a !important;
+}
+
+html.dark .contact-availability-note {
+  background: #151c28 !important;
+  border-color: #facc15 !important;
+  box-shadow: 3px 3px 0 #030712 !important;
+}
+html.dark .contact-availability-note p {
+  color: #f8fafc !important;
+}
+html.dark .contact-availability-note strong {
+  color: #facc15 !important;
+}
+
+/* Case Study Modal Enhancements in Dark Mode */
+html.dark .case-study-overview {
+  background: #0f141c !important;
+  border-color: #334155 !important;
+}
+html.dark .case-study-overview p {
+  color: #f8fafc !important;
+}
+
+html.dark .case-study-problem {
+  background: rgba(225, 29, 72, 0.15) !important;
+  border-color: #e11d48 !important;
+}
+html.dark .case-study-problem h4 {
+  color: #fb7185 !important;
+}
+html.dark .case-study-problem p {
+  color: #fecdd3 !important;
+}
+
+html.dark .case-study-solution {
+  background: rgba(22, 163, 74, 0.15) !important;
+  border-color: #16a34a !important;
+}
+html.dark .case-study-solution h4 {
+  color: #4ade80 !important;
+}
+html.dark .case-study-solution p {
+  color: #bbf7d0 !important;
+}
+
+html.dark .case-study-impact {
+  background: rgba(56, 189, 248, 0.12) !important;
+  border-color: #0284c7 !important;
+  box-shadow: 4px 4px 0 #030712 !important;
+}
+html.dark .case-study-impact h4 {
+  color: #38bdf8 !important;
+}
+html.dark .case-study-impact p,
+html.dark .case-study-impact-text {
+  color: #e0f2fe !important;
+}
+
+/* Dark mode DRF and dark icon images */
+html.dark .drf-icon-img {
+  filter: brightness(2.5) contrast(1.1) invert(1) !important;
+}
+
+/* Footer in Dark Mode */
+html.dark footer#footer {
+  background: #07090e !important;
+  border-top: 2px solid #1e293b !important;
+  color: #94a3b8 !important;
+}
+
+/* Scrollbars */
+html.dark ::-webkit-scrollbar-track {
+  background: #0b0f17;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+
 html,
 body {
   font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;

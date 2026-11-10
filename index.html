@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
+    <!-- Anti-FOUC Synchronous Theme Script: Defaults to Light, Persists on Hard Refresh -->
+    <script>
+      (function () {
+        try {
+          var theme = localStorage.getItem('theme');
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- Primary Meta Tags & SEO -->
     <title>Syed Najmus Shakib — Full Stack Developer & Software Engineer</title>
     <meta name="title" content="Syed Najmus Shakib — Full Stack Developer & Software Engineer" />

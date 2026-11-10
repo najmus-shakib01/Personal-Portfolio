@@ -82,7 +82,7 @@ const Footer = () => {
                 fontFamily: 'var(--font-display)',
                 fontWeight: 800,
                 fontSize: '1.75rem',
-                color: 'var(--white)',
+                color: '#ffffff',
                 textDecoration: 'none',
                 letterSpacing: '-0.02em',
                 display: 'inline-block',
@@ -95,7 +95,7 @@ const Footer = () => {
               style={{
                 fontFamily: 'var(--font-mono)',
                 fontSize: '0.8rem',
-                color: '#aaa',
+                color: '#cbd5e1',
                 lineHeight: 1.8,
                 maxWidth: '280px',
               }}

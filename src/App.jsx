@@ -20,11 +20,11 @@ const App = () => {
           style: {
             fontFamily: 'var(--font-mono)',
             fontSize: '0.8rem',
-            border: '2px solid #0a0a0a',
-            boxShadow: '4px 4px 0px #0a0a0a',
+            border: 'var(--border)',
+            boxShadow: 'var(--shadow)',
             borderRadius: '0',
-            background: '#fafaf8',
-            color: '#0a0a0a',
+            background: 'var(--white)',
+            color: 'var(--black)',
           },
         }}
       />

@@ -143,6 +143,7 @@ const Experience = () => {
           {categories.map(cat => {
             const isActive = active === cat
             const count = categoryCounts[cat]
+            const isAll = cat === 'All'
             return (
               <button
                 key={cat}
@@ -154,8 +155,8 @@ const Experience = () => {
                   letterSpacing: '0.06em',
                   padding: '8px 16px',
                   border: 'var(--border)',
-                  background: isActive ? categoryColors[cat] : 'transparent',
-                  color: isActive ? '#fff' : 'var(--black)',
+                  background: isActive ? (isAll ? 'var(--accent)' : categoryColors[cat]) : 'transparent',
+                  color: isActive ? (isAll ? '#0a0a0a' : '#fff') : 'var(--black)',
                   cursor: 'pointer',
                   boxShadow: isActive ? 'var(--shadow)' : 'none',
                   transform: isActive ? 'translate(-2px, -2px)' : 'none',
@@ -171,8 +172,9 @@ const Experience = () => {
                     fontSize: '0.68rem',
                     padding: '1px 6px',
                     borderRadius: '10px',
-                    background: isActive ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.08)',
-                    color: isActive ? '#fff' : 'var(--black)',
+                    background: isActive ? (isAll ? 'rgba(0,0,0,0.18)' : 'rgba(255,255,255,0.25)') : 'rgba(128,128,128,0.2)',
+                    color: isActive ? (isAll ? '#0a0a0a' : '#fff') : 'var(--black)',
+                    fontWeight: 800,
                   }}
                 >
                   {count}
@@ -234,11 +236,15 @@ const Experience = () => {
                     }}
                   >
                     {Icon ? (
-                      <Icon color={skill.color} style={{ width: '100%', height: '100%' }} />
+                      <Icon
+                        color={skill.color === '#000000' || !skill.color ? 'var(--black)' : skill.color}
+                        style={{ width: '100%', height: '100%' }}
+                      />
                     ) : skill.img ? (
                       <img
                         src={skill.img}
                         alt={skill.alt || skill.name}
+                        className={skill.name === 'DRF' ? 'drf-icon-img' : ''}
                         style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                       />
                     ) : null}

@@ -122,7 +122,8 @@ const Contact = () => {
                 onMouseEnter={e => {
                   e.currentTarget.style.transform = 'translate(-2px,-2px)'
                   e.currentTarget.style.boxShadow = 'var(--shadow-lg)'
-                  e.currentTarget.style.background = info.bg
+                  const isDark = document.documentElement.classList.contains('dark')
+                  e.currentTarget.style.background = isDark ? '#222228' : info.bg
                 }}
                 onMouseLeave={e => {
                   e.currentTarget.style.transform = 'none'
@@ -214,10 +215,10 @@ const Contact = () => {
 
             {/* Availability note */}
             <div
+              className="contact-availability-note"
               style={{
                 padding: '1rem 1.25rem',
                 border: '2px solid var(--accent)',
-                background: '#fefce8',
                 boxShadow: '3px 3px 0 var(--accent-dark)',
                 marginTop: '0.5rem',
               }}
@@ -226,7 +227,6 @@ const Contact = () => {
                 style={{
                   fontFamily: 'var(--font-mono)',
                   fontSize: '0.8rem',
-                  color: 'var(--black)',
                   lineHeight: 1.7,
                 }}
               >

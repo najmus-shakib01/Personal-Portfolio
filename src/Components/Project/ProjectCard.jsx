@@ -412,7 +412,7 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
                     fontFamily: 'var(--font-display)',
                     fontWeight: 800,
                     fontSize: '1.35rem',
-                    color: 'var(--black)',
+                    color: '#0a0a0a',
                     lineHeight: 1.2,
                   }}
                 >
@@ -421,15 +421,17 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
               </div>
               <button
                 onClick={() => setIsCaseStudyOpen(false)}
+                aria-label="Close modal"
                 style={{
-                  background: 'var(--white)',
+                  background: '#ffffff',
+                  color: '#0a0a0a',
                   border: 'var(--border)',
                   padding: '6px',
                   cursor: 'pointer',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  boxShadow: '2px 2px 0 var(--black)',
+                  boxShadow: '2px 2px 0 #000000',
                 }}
               >
                 <FiX size={20} />
@@ -448,8 +450,11 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
             >
               {/* Overview */}
               {caseStudy.overview && (
-                <div style={{ background: 'var(--cream)', padding: '1rem 1.25rem', border: 'var(--border)' }}>
-                  <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: '#222', lineHeight: 1.7 }}>
+                <div
+                  className="case-study-overview"
+                  style={{ background: 'var(--cream)', padding: '1rem 1.25rem', border: 'var(--border)' }}
+                >
+                  <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'var(--black)', lineHeight: 1.7 }}>
                     {caseStudy.overview}
                   </p>
                 </div>
@@ -457,26 +462,26 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
 
               {/* Problem & Solution Grid */}
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1rem' }}>
-                <div style={{ border: 'var(--border)', padding: '1rem', background: '#fff1f2' }}>
+                <div className="case-study-problem" style={{ border: 'var(--border)', padding: '1rem', background: '#fff1f2' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.5rem' }}>
                     <FiTarget color="#e11d48" size={18} />
                     <h4 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.95rem', color: '#be123c' }}>
                       The Problem
                     </h4>
                   </div>
-                  <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: '#444', lineHeight: 1.6 }}>
+                  <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: 'var(--black)', lineHeight: 1.6 }}>
                     {caseStudy.problem}
                   </p>
                 </div>
 
-                <div style={{ border: 'var(--border)', padding: '1rem', background: '#f0fdf4' }}>
+                <div className="case-study-solution" style={{ border: 'var(--border)', padding: '1rem', background: '#f0fdf4' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.5rem' }}>
                     <FiCheckCircle color="#16a34a" size={18} />
                     <h4 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.95rem', color: '#15803d' }}>
                       The Solution
                     </h4>
                   </div>
-                  <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: '#444', lineHeight: 1.6 }}>
+                  <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.78rem', color: 'var(--black)', lineHeight: 1.6 }}>
                     {caseStudy.solution}
                   </p>
                 </div>
@@ -487,7 +492,7 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.75rem' }}>
                     <FiLayers size={18} />
-                    <h4 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1rem' }}>
+                    <h4 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1rem', color: 'var(--black)' }}>
                       Architecture & Stack
                     </h4>
                   </div>
@@ -501,6 +506,7 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
                           fontWeight: 700,
                           padding: '6px 12px',
                           background: 'var(--white)',
+                          color: 'var(--black)',
                           border: 'var(--border)',
                           boxShadow: '2px 2px 0 var(--black)',
                         }}
@@ -515,7 +521,7 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
               {/* Key Features */}
               {caseStudy.keyFeatures && (
                 <div>
-                  <h4 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1rem', marginBottom: '0.75rem' }}>
+                  <h4 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1rem', marginBottom: '0.75rem', color: 'var(--black)' }}>
                     Key UX & Technical Highlights
                   </h4>
                   <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -527,19 +533,21 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
                           alignItems: 'flex-start',
                           gap: '10px',
                           fontFamily: 'var(--font-mono)',
-                          fontSize: '0.8rem',
-                          color: '#333',
+                          fontSize: '0.82rem',
+                          color: 'var(--black)',
                           lineHeight: 1.5,
                         }}
                       >
                         <span
                           style={{
                             background: 'var(--accent)',
+                            color: '#0a0a0a',
                             border: '1px solid #000',
                             padding: '2px 6px',
                             fontSize: '0.65rem',
-                            fontWeight: 700,
+                            fontWeight: 800,
                             marginTop: '2px',
+                            flexShrink: 0,
                           }}
                         >
                           0{idx + 1}
@@ -554,6 +562,7 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
               {/* Impact / Results */}
               {caseStudy.impact && (
                 <div
+                  className="case-study-impact"
                   style={{
                     background: 'var(--blue-light)',
                     border: 'var(--border)',
@@ -562,12 +571,12 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.4rem' }}>
-                    <FiTrendingUp color="var(--blue-dark)" size={18} />
-                    <h4 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.95rem', color: 'var(--blue-dark)' }}>
+                    <FiTrendingUp color="var(--blue)" size={18} />
+                    <h4 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.95rem', color: 'var(--blue)' }}>
                       Results & Impact
                     </h4>
                   </div>
-                  <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: '#1e3a8a', fontWeight: 700, lineHeight: 1.6 }}>
+                  <p className="case-study-impact-text" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', color: '#1e3a8a', fontWeight: 700, lineHeight: 1.6 }}>
                     {caseStudy.impact}
                   </p>
                 </div>
