@@ -1,5 +1,16 @@
+import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FaAward, FaExternalLinkAlt, FaGraduationCap, FaMapMarkerAlt, FaUniversity } from 'react-icons/fa'
+import {
+  FaAward,
+  FaCheckCircle,
+  FaExternalLinkAlt,
+  FaEye,
+  FaGraduationCap,
+  FaMapMarkerAlt,
+  FaTimes,
+  FaUniversity,
+} from 'react-icons/fa'
+import diplomaCertImg from '/public/image/certificate.webp'
 
 const defaultSubjects = [
   'Data Structures & Algorithms',
@@ -15,9 +26,28 @@ const defaultSubjects = [
 const Education = () => {
   const { t, i18n } = useTranslation('education')
   const isBn = i18n.language === 'bn'
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const rawSubjects = isBn ? t('subjects', { returnObjects: true }) : defaultSubjects
   const subjects = Array.isArray(rawSubjects) ? rawSubjects : defaultSubjects
+
+  // Handle ESC key & scroll lock when modal is open
+  useEffect(() => {
+    if (!isModalOpen) return
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setIsModalOpen(false)
+    }
+
+    const prevOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.body.style.overflow = prevOverflow
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [isModalOpen])
 
   return (
     <section
@@ -399,7 +429,7 @@ const Education = () => {
               </div>
             </div>
 
-            {/* Quick Summary Box */}
+            {/* Academic Verification & Diploma Certificate Box */}
             <div
               style={{
                 border: 'var(--border)',
@@ -410,40 +440,312 @@ const Education = () => {
             >
               <div
                 style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.7rem',
-                  fontWeight: 700,
-                  textTransform: 'uppercase',
-                  color: 'var(--black)',
-                  letterSpacing: '0.06em',
-                  marginBottom: '6px',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '6px',
+                  justifyContent: 'space-between',
+                  gap: '8px',
+                  marginBottom: '8px',
+                  flexWrap: 'wrap',
                 }}
               >
-                <FaAward color="#ea580c" /> {t('academic_verification_title', 'Academic Verification')}
+                <div
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.72rem',
+                    fontWeight: 700,
+                    textTransform: 'uppercase',
+                    color: 'var(--black)',
+                    letterSpacing: '0.06em',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                  }}
+                >
+                  <FaAward color="#ea580c" /> {t('academic_verification_title', 'Academic Verification')}
+                </div>
+
+                <span
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.65rem',
+                    fontWeight: 700,
+                    color: '#16a34a',
+                    background: '#dcfce7',
+                    border: '1.5px solid #16a34a',
+                    padding: '2px 8px',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '4px',
+                    textTransform: 'uppercase',
+                  }}
+                >
+                  <FaCheckCircle size={10} /> {t('certificate_badge', 'BTEB Verified')}
+                </span>
               </div>
+
               <p
                 style={{
                   fontFamily: 'var(--font-mono)',
                   fontSize: '0.78rem',
                   color: '#555',
                   lineHeight: 1.6,
+                  marginBottom: '10px',
                 }}
               >
                 {t('academic_verification_desc', 'All institutional records and transcripts are registered under the Bangladesh Technical Education Board (BTEB) and Habiganj Polytechnic Institute. Official certificates are processed and verified.')}
               </p>
+
+              {/* Certificate Image Preview */}
+              <div
+                onClick={() => setIsModalOpen(true)}
+                className="cert-preview-wrapper"
+                style={{
+                  position: 'relative',
+                  border: 'var(--border)',
+                  boxShadow: '2px 2px 0 var(--black)',
+                  background: 'var(--white)',
+                  overflow: 'hidden',
+                  cursor: 'pointer',
+                  marginBottom: '10px',
+                }}
+                title={t('certificate_view_fullscreen', 'Click to view full certificate')}
+              >
+                <img
+                  src={diplomaCertImg}
+                  alt="Diploma in Engineering Certificate — Syed Najmus Shakib"
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    display: 'block',
+                    transition: 'transform 0.25s ease',
+                  }}
+                  className="cert-thumb"
+                  loading="lazy"
+                />
+                <div
+                  className="cert-overlay"
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    background: 'rgba(10, 10, 10, 0.45)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    opacity: 0,
+                    transition: 'opacity 0.2s ease',
+                  }}
+                >
+                  <span
+                    style={{
+                      background: 'var(--white)',
+                      color: 'var(--black)',
+                      fontFamily: 'var(--font-mono)',
+                      fontWeight: 700,
+                      fontSize: '0.72rem',
+                      padding: '5px 12px',
+                      border: 'var(--border)',
+                      boxShadow: '2px 2px 0 var(--black)',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '5px',
+                    }}
+                  >
+                    <FaEye /> {t('certificate_view_fullscreen', 'View Full Certificate')}
+                  </span>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(true)}
+                  className="btn-primary"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    fontSize: '0.75rem',
+                    padding: '6px 12px',
+                    cursor: 'pointer',
+                  }}
+                >
+                  <FaEye size={12} /> {t('certificate_view_fullscreen', 'View Full Certificate')}
+                </button>
+                <a
+                  href="/image/certificate.webp"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    fontSize: '0.75rem',
+                    padding: '6px 12px',
+                    textDecoration: 'none',
+                  }}
+                >
+                  <FaExternalLinkAlt size={10} /> {t('certificate_open_tab', 'Open Original')}
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Fullscreen Certificate Modal */}
+      {isModalOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setIsModalOpen(false)}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 99999,
+            background: 'rgba(10, 10, 10, 0.85)',
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '1rem',
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              position: 'relative',
+              width: '100%',
+              maxWidth: '920px',
+              maxHeight: '92vh',
+              background: 'var(--white)',
+              border: 'var(--border)',
+              boxShadow: 'var(--shadow-lg)',
+              display: 'flex',
+              flexDirection: 'column',
+              overflow: 'hidden',
+            }}
+          >
+            {/* Modal Header */}
+            <div
+              style={{
+                padding: '10px 16px',
+                borderBottom: 'var(--border)',
+                background: 'var(--cream)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                gap: '12px',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.65rem',
+                    fontWeight: 700,
+                    textTransform: 'uppercase',
+                    padding: '3px 8px',
+                    background: 'var(--blue)',
+                    color: 'var(--white)',
+                    border: '1.5px solid var(--black)',
+                  }}
+                >
+                  {t('certificate_badge', 'BTEB Verified')}
+                </span>
+                <h4
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontWeight: 800,
+                    fontSize: '0.95rem',
+                    color: 'var(--black)',
+                    margin: 0,
+                  }}
+                >
+                  {t('certificate_title', 'Diploma in Engineering Certificate')}
+                </h4>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <a
+                  href="/image/certificate.webp"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    fontSize: '0.72rem',
+                    padding: '5px 10px',
+                    textDecoration: 'none',
+                  }}
+                >
+                  <FaExternalLinkAlt size={10} /> {t('certificate_open_tab', 'Open Original')}
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(false)}
+                  aria-label="Close"
+                  style={{
+                    background: '#ef4444',
+                    color: '#fff',
+                    border: 'var(--border)',
+                    width: '30px',
+                    height: '30px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    fontWeight: 800,
+                  }}
+                >
+                  <FaTimes />
+                </button>
+              </div>
+            </div>
+
+            {/* Modal Image Body */}
+            <div
+              style={{
+                padding: '1rem',
+                background: 'var(--cream)',
+                overflowY: 'auto',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <img
+                src={diplomaCertImg}
+                alt="Diploma in Engineering Certificate"
+                style={{
+                  maxWidth: '100%',
+                  maxHeight: 'calc(88vh - 80px)',
+                  objectFit: 'contain',
+                  border: 'var(--border)',
+                  boxShadow: 'var(--shadow)',
+                  background: '#fff',
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       <style>{`
         @media (min-width: 960px) {
           .education-grid {
             grid-template-columns: 1.4fr 1fr !important;
           }
+        }
+        .cert-preview-wrapper:hover .cert-overlay {
+          opacity: 1 !important;
+        }
+        .cert-preview-wrapper:hover .cert-thumb {
+          transform: scale(1.02);
         }
       `}</style>
     </section>
