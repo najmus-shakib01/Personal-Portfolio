@@ -11,11 +11,13 @@ import {
 import {
     SiAstro,
     SiC,
+    SiClaude,
     SiCplusplus,
     SiDjango,
     SiGooglegemini,
     SiMysql,
     SiNextdotjs,
+    SiOpenai,
     SiPayloadcms,
     SiPostgresql,
     SiSupabase,
@@ -69,6 +71,8 @@ const ExperienceData = [
     { id: 26, url: 'https://deepmind.google/', icon: SiGooglegemini, color: '#1A73E8', target: '_blank', category: 'tools', name: 'Antigravity' },
     { id: 27, img: postmen, alt: 'postman', url: 'https://www.postman.com/', width: 50, target: '_blank', category: 'tools', name: 'Postman' },
     { id: 28, img: vs_code, alt: 'vscode', url: 'https://code.visualstudio.com/', width: 100, target: '_blank', category: 'tools', name: 'VS Code' },
+    { id: 29, url: 'https://claude.ai/', icon: SiClaude, color: '#CC785C', target: '_blank', category: 'tools', name: 'Claude Code' },
+    { id: 30, url: 'https://openai.com/', icon: SiOpenai, color: '#10A37F', target: '_blank', category: 'tools', name: 'Codex' },
 ]
 
 export default ExperienceData;
