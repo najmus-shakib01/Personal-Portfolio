@@ -14,16 +14,22 @@ import {
     SiClaude,
     SiCplusplus,
     SiDjango,
+    SiDocker,
+    SiGooglechrome,
     SiGooglegemini,
     SiMysql,
+    SiNetlify,
     SiNextdotjs,
     SiOpenai,
     SiPayloadcms,
     SiPostgresql,
+    SiRender,
     SiSupabase,
     SiTailwindcss,
+    SiVercel,
     SiVite,
 } from 'react-icons/si'
+import { BsCursorFill } from 'react-icons/bs'
 
 // local images
 const dsa = '/dsa.png'
@@ -73,6 +79,12 @@ const ExperienceData = [
     { id: 28, img: vs_code, alt: 'vscode', url: 'https://code.visualstudio.com/', width: 100, target: '_blank', category: 'tools', name: 'VS Code' },
     { id: 29, url: 'https://claude.ai/', icon: SiClaude, color: '#CC785C', target: '_blank', category: 'tools', name: 'Claude Code' },
     { id: 30, url: 'https://openai.com/', icon: SiOpenai, color: '#10A37F', target: '_blank', category: 'tools', name: 'Codex' },
+    { id: 31, url: 'https://vercel.com/', icon: SiVercel, color: '#000000', target: '_blank', category: 'tools', name: 'Vercel' },
+    { id: 32, url: 'https://www.netlify.com/', icon: SiNetlify, color: '#00C7B7', target: '_blank', category: 'tools', name: 'Netlify' },
+    { id: 33, url: 'https://www.cursor.com/', icon: BsCursorFill, color: '#000000', target: '_blank', category: 'tools', name: 'Cursor' },
+    { id: 34, url: 'https://render.com/', icon: SiRender, color: '#46E3B7', target: '_blank', category: 'tools', name: 'Render' },
+    { id: 35, url: 'https://developer.chrome.com/docs/devtools', icon: SiGooglechrome, color: '#4285F4', target: '_blank', category: 'tools', name: 'Chrome DevTools' },
+    { id: 36, url: 'https://www.docker.com/', icon: SiDocker, color: '#2496ED', target: '_blank', category: 'tools', name: 'Docker' },
 ]
 
 export default ExperienceData;
