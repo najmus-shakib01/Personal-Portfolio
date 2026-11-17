@@ -199,35 +199,6 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
                 {t('btn_code', 'Code')}
               </button>
             )}
-
-            {caseStudy && (
-              <button
-                onClick={() => setIsOpen(true)}
-                style={{
-                  gridColumn: 'span 2',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '6px',
-                  padding: '7px 0',
-                  background: 'var(--cream)',
-                  color: 'var(--black)',
-                  border: 'var(--border)',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.68rem',
-                  fontWeight: 700,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.04em',
-                  cursor: 'pointer',
-                  transition: 'background 0.12s',
-                }}
-                onMouseEnter={e => e.currentTarget.style.background = '#e5e2d9'}
-                onMouseLeave={e => e.currentTarget.style.background = 'var(--cream)'}
-              >
-                <FiCode size={13} />
-                {t('btn_view_source', 'View Source Code')}
-              </button>
-            )}
           </div>
         </div>
       </article>
@@ -619,27 +590,6 @@ const ProjectCard = ({ title, description, image, demoLink, frontend, backend, t
               >
                 <FiExternalLink size={14} /> {t('btn_live_demo', 'Live Demo')}
               </a>
-              <button
-                onClick={() => {
-                  setIsCaseStudyOpen(false)
-                  setIsOpen(true)
-                }}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  padding: '8px 16px',
-                  background: 'var(--white)',
-                  color: 'var(--black)',
-                  border: 'var(--border)',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.75rem',
-                  fontWeight: 700,
-                  cursor: 'pointer',
-                }}
-              >
-                <FiCode size={14} /> {t('btn_code', 'Source Code')}
-              </button>
             </div>
           </div>
         </div>
