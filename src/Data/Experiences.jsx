@@ -11,9 +11,9 @@ import {
 import {
     SiAstro,
     SiC,
-    SiCanva,
     SiCplusplus,
     SiDjango,
+    SiGooglegemini,
     SiMysql,
     SiNextdotjs,
     SiPayloadcms,
@@ -66,7 +66,7 @@ const ExperienceData = [
     { id: 23, url: 'https://www.figma.com/', icon: FaFigma, color: 'rgb(181,125,171)', target: '_blank', category: 'tools', name: 'Figma' },
     { id: 24, url: 'https://github.com/', icon: FaGithub, color: '#181717', target: '_blank', category: 'tools', name: 'GitHub' },
     { id: 25, img: git, alt: 'git', url: 'https://git-scm.com/', width: 100, target: '_blank', category: 'tools', name: 'Git' },
-    { id: 26, url: 'https://www.canva.com/', icon: SiCanva, color: '#00C4CC', target: '_blank', category: 'tools', name: 'Canva' },
+    { id: 26, url: 'https://deepmind.google/', icon: SiGooglegemini, color: '#1A73E8', target: '_blank', category: 'tools', name: 'Antigravity' },
     { id: 27, img: postmen, alt: 'postman', url: 'https://www.postman.com/', width: 50, target: '_blank', category: 'tools', name: 'Postman' },
     { id: 28, img: vs_code, alt: 'vscode', url: 'https://code.visualstudio.com/', width: 100, target: '_blank', category: 'tools', name: 'VS Code' },
 ]
