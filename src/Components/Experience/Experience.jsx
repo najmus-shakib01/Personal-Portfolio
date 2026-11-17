@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import ExperienceData from '../../Data/Experiences'
 import { FaSearch, FaTimes } from 'react-icons/fa'
 
-const categories = ['All', 'Frontend', 'Backend', 'Programming', 'Tools']
+const categories = ['All', 'Frontend', 'Backend', 'Programming', 'Tools', 'Productivity']
 
 const categoryKeyMap = {
   All: 'category_all',
@@ -11,6 +11,7 @@ const categoryKeyMap = {
   Backend: 'category_backend',
   Programming: 'category_programming',
   Tools: 'category_tools',
+  Productivity: 'category_productivity',
 }
 
 const categoryColors = {
@@ -19,6 +20,7 @@ const categoryColors = {
   Backend: '#7c3aed',
   Programming: '#059669',
   Tools: '#ea580c',
+  Productivity: '#0284c7',
 }
 
 const toBnNumber = (n, isBn) => {
@@ -41,6 +43,7 @@ const Experience = () => {
       Backend: ExperienceData.filter(s => s.category === 'backend').length,
       Programming: ExperienceData.filter(s => s.category === 'programming').length,
       Tools: ExperienceData.filter(s => s.category === 'tools').length,
+      Productivity: ExperienceData.filter(s => s.category === 'productivity').length,
     }
   }, [])
 

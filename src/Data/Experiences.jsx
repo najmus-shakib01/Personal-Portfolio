@@ -30,6 +30,11 @@ import {
     SiVite,
 } from 'react-icons/si'
 import { BsCursorFill } from 'react-icons/bs'
+import {
+    PiMicrosoftWordLogoFill,
+    PiMicrosoftExcelLogoFill,
+    PiMicrosoftPowerpointLogoFill,
+} from 'react-icons/pi'
 
 // local images
 const dsa = '/dsa.png'
@@ -85,6 +90,11 @@ const ExperienceData = [
     { id: 34, url: 'https://render.com/', icon: SiRender, color: '#46E3B7', target: '_blank', category: 'tools', name: 'Render' },
     { id: 35, url: 'https://developer.chrome.com/docs/devtools', icon: SiGooglechrome, color: '#4285F4', target: '_blank', category: 'tools', name: 'Chrome DevTools' },
     { id: 36, url: 'https://www.docker.com/', icon: SiDocker, color: '#2496ED', target: '_blank', category: 'tools', name: 'Docker' },
+
+    // Productivity
+    { id: 37, url: 'https://www.microsoft.com/en-us/microsoft-365/word', icon: PiMicrosoftWordLogoFill, color: '#185ABD', target: '_blank', category: 'productivity', name: 'MS Word' },
+    { id: 38, url: 'https://www.microsoft.com/en-us/microsoft-365/excel', icon: PiMicrosoftExcelLogoFill, color: '#107C41', target: '_blank', category: 'productivity', name: 'MS Excel' },
+    { id: 39, url: 'https://www.microsoft.com/en-us/microsoft-365/powerpoint', icon: PiMicrosoftPowerpointLogoFill, color: '#C43E1C', target: '_blank', category: 'productivity', name: 'PowerPoint' },
 ]
 
 export default ExperienceData;

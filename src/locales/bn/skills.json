@@ -9,6 +9,7 @@
   "category_backend": "ব্যাকএন্ড",
   "category_programming": "প্রোগ্রামিং",
   "category_tools": "টুলস",
+  "category_productivity": "প্রোডাক্টিভিটি",
   "empty_title": "কোনো ফলাফল পাওয়া যায়নি:",
   "empty_desc": "অন্য কোনো কি-ওয়ার্ড দিয়ে খুঁজুন অথবা ফিল্টার রিসেট করুন।",
   "btn_reset": "ফিল্টার রিসেট",
@@ -24,6 +25,9 @@
     "Cursor": "Cursor",
     "Render": "Render",
     "Chrome DevTools": "Chrome DevTools",
-    "Docker": "Docker"
+    "Docker": "Docker",
+    "MS Word": "MS Word",
+    "MS Excel": "MS Excel",
+    "PowerPoint": "PowerPoint"
   }
 }
