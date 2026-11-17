@@ -81,7 +81,7 @@ const defaultProjects = {
   },
 };
 
-const projectConfigs = [
+export const projectConfigs = [
   {
     id: "luxecommerce",
     image: projectImg1,

@@ -1,8 +1,35 @@
 import { useTranslation } from 'react-i18next'
 import profileImg from '../../assets/image/photo_2025-01-04_23-53-48 (2).jpg'
+import ExperienceData from '../../Data/Experiences'
+import { projectConfigs } from '../Project/Project'
 
 const Home = () => {
-  const { t } = useTranslation('home')
+  const { t, i18n } = useTranslation('home')
+  const isBn = i18n.language === 'bn'
+
+  const toBnNumber = (n) => {
+    if (!isBn) return n
+    const bnDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯']
+    return String(n).replace(/\d/g, (d) => bnDigits[d])
+  }
+
+  const projectsCount = projectConfigs ? projectConfigs.length : 0
+  const techCount = ExperienceData ? ExperienceData.length : 0
+
+  const stats = [
+    {
+      value: `${toBnNumber(projectsCount)}+`,
+      label: t('stat_projects_label', 'Projects Built'),
+    },
+    {
+      value: `${toBnNumber(5)}+`,
+      label: t('stat_experience_label', 'Years Coding'),
+    },
+    {
+      value: `${toBnNumber(techCount)}+`,
+      label: t('stat_tech_label', 'Tech Stack'),
+    },
+  ]
 
   return (
     <section
@@ -153,11 +180,7 @@ const Home = () => {
               flexWrap: 'wrap',
             }}
           >
-            {[
-              { value: t('stat_projects_val', '20+'), label: t('stat_projects_label', 'Projects Built') },
-              { value: t('stat_experience_val', '4+'), label: t('stat_experience_label', 'Years Coding') },
-              { value: t('stat_tech_val', '15+'), label: t('stat_tech_label', 'Tech Stack') },
-            ].map(stat => (
+            {stats.map(stat => (
               <div key={stat.label}>
                 <div
                   style={{
