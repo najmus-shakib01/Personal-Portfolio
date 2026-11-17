@@ -150,7 +150,7 @@ const Navbar = () => {
             }}
           >
             <img
-              src="./image/logos.png"
+              src="/logos.png"
               alt="Logo"
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />

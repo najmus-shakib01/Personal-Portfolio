@@ -17,25 +17,25 @@
   ],
   "icons": [
     {
-      "src": "/image/logos.png",
+      "src": "/logos.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/image/shakib.jpg",
+      "src": "/shakib.jpg",
       "sizes": "512x512",
       "type": "image/jpeg",
       "purpose": "any"
     },
     {
-      "src": "/image/logos.png",
+      "src": "/logos.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "/image/shakib.jpg",
+      "src": "/shakib.jpg",
       "sizes": "512x512",
       "type": "image/jpeg",
       "purpose": "maskable"

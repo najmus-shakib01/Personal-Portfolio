@@ -4,9 +4,10 @@ const PRECACHE_URLS = [
   '/',
   '/index.html',
   '/manifest.json',
-  '/image/logos.png',
-  '/image/shakib.jpg',
-  '/image/Certificate.png',
+  '/logos.png',
+  '/shakib.jpg',
+  '/Certificate.png',
+  '/certificate.webp',
 ];
 
 // Install Event
@@ -49,7 +50,6 @@ self.addEventListener('fetch', (event) => {
       requestUrl.pathname === '/' ||
       requestUrl.pathname === '/index.html' ||
       requestUrl.pathname.startsWith('/assets/') ||
-      requestUrl.pathname.startsWith('/image/') ||
       requestUrl.pathname.endsWith('.png') ||
       requestUrl.pathname.endsWith('.jpg') ||
       requestUrl.pathname.endsWith('.jpeg') ||

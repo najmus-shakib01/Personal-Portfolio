@@ -10,7 +10,7 @@ import {
   FaTimes,
   FaUniversity,
 } from 'react-icons/fa'
-import diplomaCertImg from '/public/image/certificate.webp'
+const diplomaCertImg = '/certificate.webp'
 
 const defaultSubjects = [
   'Data Structures & Algorithms',
@@ -573,7 +573,7 @@ const Education = () => {
                   <FaEye size={12} /> {t('certificate_view_fullscreen', 'View Full Certificate')}
                 </button>
                 <a
-                  href="/image/certificate.webp"
+                  href="/certificate.webp"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-secondary"
@@ -670,7 +670,7 @@ const Education = () => {
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <a
-                  href="/image/certificate.webp"
+                  href="/certificate.webp"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-secondary"

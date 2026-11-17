@@ -24,14 +24,14 @@ import {
 } from 'react-icons/si'
 
 // local images
-const dsa = './image/dsa.png'
-const alg = './image/alg.png'
-const drf = './image/drf.png'
-const postmen = './image/postmen.png'
-const sslcommerz = './image/sslcommerz.png'
-const vs_code = './image/vs-code.png'
-const git = './image/git.png'
-const oop = './image/oop.png'
+const dsa = '/dsa.png'
+const alg = '/alg.png'
+const drf = '/drf.png'
+const postmen = '/postmen.png'
+const sslcommerz = '/sslcommerz.png'
+const vs_code = '/vs-code.png'
+const git = '/git.png'
+const oop = '/oop.png'
 
 const ExperienceData = [
     // Frontend

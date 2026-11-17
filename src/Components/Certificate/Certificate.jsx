@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import certificateImg from '/public/image/Certificate.png'
+const certificateImg = '/Certificate.png'
 import { FaAward, FaCheckCircle, FaExternalLinkAlt } from 'react-icons/fa'
 
 const Certificate = () => {
