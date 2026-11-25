@@ -7,6 +7,7 @@ const About = () => {
 
   const facts = [
     [t('fact_location_label', 'Location'), t('fact_location_val', 'Sylhet, Bangladesh')],
+    [t('fact_experience_label', 'Experience'), t('fact_experience_val', 'Jr. Full-Stack Dev @ Mavin (US Remote)')],
     [t('fact_education_label', 'Education'), t('fact_education_val', 'Diploma in CST')],
     [t('fact_training_label', 'Training'), t('fact_training_val', 'Phitron (1 Year SE)')],
     [t('fact_focus_label', 'Focus'), t('fact_focus_val', 'Full Stack / Django + React')],

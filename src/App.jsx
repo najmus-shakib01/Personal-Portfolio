@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import './App.css'
 import About from './Components/About/About'
+import WorkExperience from './Components/WorkExperience/WorkExperience'
 import Education from './Components/Education/Education'
 import Certificate from './Components/Certificate/Certificate'
 import Contact from './Components/Contact/Contact'
@@ -18,6 +19,7 @@ const PortfolioView = () => (
     <main>
       <Home />
       <About />
+      <WorkExperience />
       <Education />
       <Certificate />
       <Experience />

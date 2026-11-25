@@ -6,6 +6,7 @@ import LanguageSwitcher from "./LanguageSwitcher";
 const navItems = [
   { key: "home", id: "home", name: "Home", href: "#home" },
   { key: "about", id: "about", name: "About", href: "#about" },
+  { key: "experience", id: "experience", name: "Experience", href: "#experience" },
   { key: "education", id: "education", name: "Education", href: "#education" },
   { key: "certificate", id: "certificate", name: "Certificate", href: "#certificate" },
   { key: "skills", id: "skills", name: "Skills", href: "#skills" },

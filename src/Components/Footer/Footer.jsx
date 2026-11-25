@@ -24,6 +24,7 @@ const codingProfiles = [
 const quickLinks = [
   { key: 'home', name: 'Home', href: '#home' },
   { key: 'about', name: 'About', href: '#about' },
+  { key: 'experience', name: 'Experience', href: '#experience' },
   { key: 'education', name: 'Education', href: '#education' },
   { key: 'certificate', name: 'Certificate', href: '#certificate' },
   { key: 'skills', name: 'Skills', href: '#skills' },

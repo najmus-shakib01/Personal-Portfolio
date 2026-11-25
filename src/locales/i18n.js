@@ -6,6 +6,7 @@ import commonBn from './bn/common.json'
 import navbarBn from './bn/navbar.json'
 import homeBn from './bn/home.json'
 import aboutBn from './bn/about.json'
+import experienceBn from './bn/experience.json'
 import educationBn from './bn/education.json'
 import certificateBn from './bn/certificate.json'
 import skillsBn from './bn/skills.json'
@@ -33,6 +34,7 @@ i18n
         navbar: navbarBn,
         home: homeBn,
         about: aboutBn,
+        experience: experienceBn,
         education: educationBn,
         certificate: certificateBn,
         skills: skillsBn,

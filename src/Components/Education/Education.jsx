@@ -11,6 +11,7 @@ import {
   FaUniversity,
 } from 'react-icons/fa'
 const diplomaCertImg = '/certificate.webp'
+const basicComputerCertImg = '/computer-cource-certificate.webp'
 
 const defaultSubjects = [
   'Data Structures & Algorithms',
@@ -26,7 +27,17 @@ const defaultSubjects = [
 const Education = () => {
   const { t, i18n } = useTranslation('education')
   const isBn = i18n.language === 'bn'
+  const [modalCert, setModalCert] = useState({
+    src: diplomaCertImg,
+    title: 'Diploma in Engineering Certificate',
+    badge: 'BTEB Verified',
+  })
   const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const openCertModal = (cert) => {
+    setModalCert(cert)
+    setIsModalOpen(true)
+  }
 
   const rawSubjects = isBn ? t('subjects', { returnObjects: true }) : defaultSubjects
   const subjects = Array.isArray(rawSubjects) ? rawSubjects : defaultSubjects
@@ -426,6 +437,77 @@ const Education = () => {
                     {t('timeline_training_desc', '1-year intensive training covering C, C++, Data Structures, Algorithms, Python, Django, REST APIs, and modern web application development with CGPA 4.0.')}
                   </p>
                 </div>
+
+                {/* Basic Computer Training Item (2022) */}
+                <div
+                  style={{
+                    borderLeft: '3px solid #059669',
+                    paddingLeft: '1rem',
+                    position: 'relative',
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.68rem',
+                      fontWeight: 700,
+                      color: '#059669',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.08em',
+                    }}
+                  >
+                    {t('timeline_basic_badge', '2022 – 2023 • Government Technical Skill')}
+                  </span>
+                  <h5
+                    style={{
+                      fontFamily: 'var(--font-display)',
+                      fontWeight: 700,
+                      fontSize: '1rem',
+                      color: 'var(--black)',
+                      marginTop: '4px',
+                    }}
+                  >
+                    {t('timeline_basic_title', 'Computer Office Application (360 Hrs, 6 Months)')}
+                  </h5>
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.78rem',
+                      color: '#555',
+                      marginTop: '4px',
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    {t('timeline_basic_desc', 'Bangla Computer Training Centre, Habiganj & BTEB — Completed 6-month government-certified course with Grade A+ (Excellent). Covers MS Word, MS Excel, MS PowerPoint, MS Access.')}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      openCertModal({
+                        src: basicComputerCertImg,
+                        title: t('certificate_basic_title', 'Computer Office Application Certificate (Grade A+)'),
+                        badge: 'BTEB Grade A+',
+                      })
+                    }
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '5px',
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: '0.72rem',
+                      fontWeight: 700,
+                      color: '#059669',
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      padding: '4px 0',
+                      marginTop: '4px',
+                      textDecoration: 'underline',
+                    }}
+                  >
+                    <FaAward /> {t('timeline_btn_view_basic', 'View Computer Course Certificate')}
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -497,7 +579,13 @@ const Education = () => {
 
               {/* Certificate Image Preview */}
               <div
-                onClick={() => setIsModalOpen(true)}
+                onClick={() =>
+                  openCertModal({
+                    src: diplomaCertImg,
+                    title: t('certificate_title', 'Diploma in Engineering Certificate'),
+                    badge: t('certificate_badge', 'BTEB Verified'),
+                  })
+                }
                 className="cert-preview-wrapper"
                 style={{
                   position: 'relative',
@@ -559,7 +647,13 @@ const Education = () => {
               <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
                 <button
                   type="button"
-                  onClick={() => setIsModalOpen(true)}
+                  onClick={() =>
+                    openCertModal({
+                      src: diplomaCertImg,
+                      title: t('certificate_title', 'Diploma in Engineering Certificate'),
+                      badge: t('certificate_badge', 'BTEB Verified'),
+                    })
+                  }
                   className="btn-primary"
                   style={{
                     display: 'inline-flex',
@@ -653,7 +747,7 @@ const Education = () => {
                     border: '1.5px solid var(--black)',
                   }}
                 >
-                  {t('certificate_badge', 'BTEB Verified')}
+                  {modalCert.badge || t('certificate_badge', 'BTEB Verified')}
                 </span>
                 <h4
                   style={{
@@ -664,13 +758,13 @@ const Education = () => {
                     margin: 0,
                   }}
                 >
-                  {t('certificate_title', 'Diploma in Engineering Certificate')}
+                  {modalCert.title}
                 </h4>
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <a
-                  href="/certificate.webp"
+                  href={modalCert.src}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-secondary"
@@ -719,8 +813,8 @@ const Education = () => {
               }}
             >
               <img
-                src={diplomaCertImg}
-                alt="Diploma in Engineering Certificate"
+                src={modalCert.src}
+                alt={modalCert.title}
                 style={{
                   maxWidth: '100%',
                   maxHeight: 'calc(88vh - 80px)',
