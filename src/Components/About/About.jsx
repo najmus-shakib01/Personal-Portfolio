@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import aboutImg from '../../assets/image/7358653-removebg-preview.png'
+const aboutImg = '/7358653-removebg-preview.png'
 
 const About = () => {
   const { t, i18n } = useTranslation('about')

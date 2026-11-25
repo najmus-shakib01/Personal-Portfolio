@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import profileImg from '../../assets/image/photo_2025-01-04_23-53-48 (2).jpg'
+const profileImg = '/photo_2025-01-04_23-53-48.jpg'
 import ExperienceData from '../../Data/Experiences'
 import { projectConfigs } from '../Project/Project'
 

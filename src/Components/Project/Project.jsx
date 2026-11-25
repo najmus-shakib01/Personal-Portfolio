@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
-import projectImg1 from "../../assets/image/flower-seal.png";
-import projectImg3 from "../../assets/image/jamiya.png";
-import projectImg2 from "../../assets/image/ubaydullah.png";
+const projectImg1 = "/flower-seal.png";
+const projectImg3 = "/jamiya.png";
+const projectImg2 = "/ubaydullah.png";
 const projectImg4 = "/Tahmidul-Maula-Islamic-Scholar-Muhaddith-Researcher.png";
 import ProjectCard from "./ProjectCard";
 
