@@ -251,6 +251,98 @@ html.dark [style*="background:#dcfce7"] {
   border-color: #16a34a !important;
 }
 
+/* Remote Employment & Industrial Attachment Badges in Dark Mode */
+html.dark [style*="background: #fef3c7"],
+html.dark [style*="background:#fef3c7"] {
+  background: rgba(245, 158, 11, 0.18) !important;
+  color: #fde047 !important;
+  border-color: #d97706 !important;
+}
+html.dark [style*="background: #e0e7ff"],
+html.dark [style*="background:#e0e7ff"] {
+  background: rgba(99, 102, 241, 0.22) !important;
+  color: #c7d2fe !important;
+  border-color: #818cf8 !important;
+}
+
+/* ========================================================
+   Work Experience Highlight Banners (Light & Dark Mode)
+   ======================================================== */
+.exp-highlight-banner {
+  padding: 1.15rem 1.35rem;
+  border: var(--border);
+  box-shadow: 2px 2px 0 var(--black);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: all 0.2s ease;
+}
+
+.exp-highlight-blue {
+  background: #eff6ff;
+  border: 1.5px solid #bfdbfe;
+}
+.exp-highlight-blue .exp-highlight-icon {
+  background: var(--blue);
+  color: #ffffff;
+  border: 1.5px solid #1d4ed8;
+}
+.exp-highlight-blue .exp-highlight-text {
+  color: #1e3a8a !important;
+}
+
+.exp-highlight-emerald {
+  background: #ecfdf5;
+  border: 1.5px solid #a7f3d0;
+}
+.exp-highlight-emerald .exp-highlight-icon {
+  background: #047857;
+  color: #ffffff;
+  border: 1.5px solid #065f46;
+}
+.exp-highlight-emerald .exp-highlight-text {
+  color: #064e3b !important;
+}
+
+/* Dark Mode Overrides for Highlight Banners */
+html.dark .exp-highlight-banner {
+  box-shadow: 4px 4px 0px #030712 !important;
+}
+
+html.dark .exp-highlight-blue {
+  background: rgba(14, 116, 144, 0.18) !important;
+  border: 1.5px solid #38bdf8 !important;
+}
+html.dark .exp-highlight-blue .exp-highlight-icon {
+  background: #38bdf8 !important;
+  color: #0b0f17 !important;
+  border: 1.5px solid #38bdf8 !important;
+}
+html.dark .exp-highlight-blue .exp-highlight-icon svg {
+  color: #0b0f17 !important;
+}
+html.dark .exp-highlight-blue .exp-highlight-text {
+  color: #f0f9ff !important;
+  font-weight: 500 !important;
+}
+
+html.dark .exp-highlight-emerald {
+  background: rgba(6, 95, 70, 0.22) !important;
+  border: 1.5px solid #34d399 !important;
+}
+html.dark .exp-highlight-emerald .exp-highlight-icon {
+  background: #34d399 !important;
+  color: #0b0f17 !important;
+  border: 1.5px solid #34d399 !important;
+}
+html.dark .exp-highlight-emerald .exp-highlight-icon svg {
+  color: #0b0f17 !important;
+}
+html.dark .exp-highlight-emerald .exp-highlight-text {
+  color: #ecfdf5 !important;
+  font-weight: 500 !important;
+}
+
 /* Availability Note in Contact */
 .contact-availability-note {
   background: #fefce8;

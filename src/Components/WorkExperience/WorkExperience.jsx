@@ -436,24 +436,13 @@ const WorkExperience = () => {
             </div>
 
             {/* Highlight Summary Banner */}
-            <div
-              style={{
-                padding: '1rem 1.25rem',
-                background: '#eff6ff',
-                border: 'var(--border)',
-                boxShadow: '2px 2px 0 var(--black)',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px',
-              }}
-            >
+            <div className="exp-highlight-banner exp-highlight-blue">
               <div
+                className="exp-highlight-icon"
                 style={{
                   width: '36px',
                   height: '36px',
-                  background: 'var(--blue)',
-                  color: 'var(--white)',
-                  border: 'var(--border)',
+                  borderRadius: '2px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -463,10 +452,10 @@ const WorkExperience = () => {
                 <FaBriefcase size={16} />
               </div>
               <p
+                className="exp-highlight-text"
                 style={{
                   fontFamily: 'var(--font-mono)',
-                  fontSize: '0.82rem',
-                  color: '#1e3a8a',
+                  fontSize: '0.84rem',
                   lineHeight: 1.6,
                   margin: 0,
                   fontWeight: 500,
@@ -803,24 +792,13 @@ const WorkExperience = () => {
             </div>
 
             {/* Bottom Highlight */}
-            <div
-              style={{
-                padding: '1rem 1.25rem',
-                background: '#ecfdf5',
-                border: 'var(--border)',
-                boxShadow: '2px 2px 0 var(--black)',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px',
-              }}
-            >
+            <div className="exp-highlight-banner exp-highlight-emerald">
               <div
+                className="exp-highlight-icon"
                 style={{
                   width: '36px',
                   height: '36px',
-                  background: '#047857',
-                  color: 'var(--white)',
-                  border: 'var(--border)',
+                  borderRadius: '2px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -830,10 +808,10 @@ const WorkExperience = () => {
                 <FaBriefcase size={16} />
               </div>
               <p
+                className="exp-highlight-text"
                 style={{
                   fontFamily: 'var(--font-mono)',
-                  fontSize: '0.82rem',
-                  color: '#064e3b',
+                  fontSize: '0.84rem',
                   lineHeight: 1.6,
                   margin: 0,
                   fontWeight: 500,
