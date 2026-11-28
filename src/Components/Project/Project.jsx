@@ -3,9 +3,29 @@ const projectImg1 = "/flower-seal.png";
 const projectImg3 = "/jamiya.png";
 const projectImg2 = "/ubaydullah.png";
 const projectImg4 = "/Tahmidul-Maula-Islamic-Scholar-Muhaddith-Researcher.png";
+const projectImg5 = "/nothikit.webp";
 import ProjectCard from "./ProjectCard";
 
 const defaultProjects = {
+  nothikit: {
+    title: "NothiKit",
+    description:
+      "All-in-one privacy-first document, photo, PDF, and Bangla productivity suite with 100% on-device browser processing.",
+    overview:
+      "NothiKit is a modern browser-based productivity web application featuring 9+ essential utilities for document formatting, photo resizing, PDF manipulation, and Bangla typing — running entirely inside the user's browser with zero server uploads.",
+    problem:
+      "Users often struggle with strict job portal requirements (e.g. exact KB photo/signature limits, NID/Passport A4 print sizing) and are forced to upload sensitive documents to insecure third-party web services.",
+    solution:
+      "Engineered an all-in-one local toolkit utilizing Next.js, Tailwind CSS, and shadcn/ui that executes all image compression, A4 layout generation, Bijoy-to-Unicode conversion, and official letter generation 100% client-side in browser memory.",
+    keyFeatures: [
+      "Passport & NID Card 300 DPI A4 print sheet generator with head-chin guides",
+      "Exact KB file & image compressor to hit strict government and job portal limits",
+      "Automated bilingual official application & দরখাস্ত generator with instant A4 PDF/DOC export",
+      "100% on-device privacy guarantee with zero server uploads and offline capabilities",
+    ],
+    impact:
+      "Eliminated privacy concerns and saved time for thousands of job seekers, students, and daily computer users in Bangladesh.",
+  },
   luxecommerce: {
     title: "LuxeCommerce",
     description:
@@ -82,6 +102,18 @@ const defaultProjects = {
 };
 
 export const projectConfigs = [
+  {
+    id: "nothikit",
+    image: projectImg5,
+    tags: ["Next.js", "Tailwind CSS", "shadcn/ui", "i18n"],
+    demoLink: "https://nothikit.vercel.app",
+    architecture: [
+      "Next.js App Router",
+      "Tailwind CSS & shadcn/ui",
+      "100% Client-Side Web APIs / Canvas",
+      "Bilingual Localization (i18n)",
+    ],
+  },
   {
     id: "luxecommerce",
     image: projectImg1,
